@@ -14,6 +14,16 @@ public class SampleTest {
         // when
         int[] evenNumbers = EvenArrayUtils.filter(numbers);
 
+
+
+
+
+
+
+
+
+
+
         // then
         assertThat(evenNumbers)
             .containsExactly(2, 4)
