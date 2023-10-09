@@ -9,7 +9,7 @@ public final class Task1 {
     private Task1() {
     }
 
-    public static void printHelloWorld() {
+    public void printHelloWorld() {
         LOGGER.info("Привет, мир!");
     }
 }
