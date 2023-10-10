@@ -1,9 +1,6 @@
 package edu.hw1;
 
 public class Task9 {
-    public Task9() {
-
-    }
 
     @SuppressWarnings("MagicNumber")
     public boolean knightBoardCapture(int[][] board) {

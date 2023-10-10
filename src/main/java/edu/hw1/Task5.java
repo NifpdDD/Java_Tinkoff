@@ -2,11 +2,7 @@ package edu.hw1;
 
 import java.util.Objects;
 
-
 public class Task5 {
-    public Task5() {
-
-    }
 
     public String fixString(String s) {
         Objects.requireNonNull(s);

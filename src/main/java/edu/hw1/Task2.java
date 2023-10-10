@@ -4,9 +4,6 @@ import java.util.Objects;
 
 
 public final class Task2 {
-    public Task2() {
-    }
-
     private static final int SECONDS_IN_MUNUTE = 60;
 
     public int minutesToSeconds(String time) {

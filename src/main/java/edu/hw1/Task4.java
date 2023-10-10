@@ -3,9 +3,6 @@ package edu.hw1;
 import java.util.Arrays;
 
 public final class Task4 {
-    public Task4() {
-
-    }
 
     public boolean isNestable(int[] a, int[] b) {
 

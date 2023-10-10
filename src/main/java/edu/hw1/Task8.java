@@ -1,9 +1,6 @@
 package edu.hw1;
 
 public class Task8 {
-    public Task8() {
-
-    }
 
     public int rotateLeft(int n, int shift) {
         if (n < 0) {

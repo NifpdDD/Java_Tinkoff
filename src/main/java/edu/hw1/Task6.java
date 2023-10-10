@@ -2,11 +2,7 @@ package edu.hw1;
 
 public class Task6 {
 
-    public Task6() {
-
-    }
-
-    public  boolean isPalindromeDescendant(int number) {
+    public boolean isPalindromeDescendant(int number) {
         String numberString = String.valueOf(number);
         while (numberString.length() > 1) {
             if (new StringBuilder(numberString).reverse().toString().equals(numberString)) {

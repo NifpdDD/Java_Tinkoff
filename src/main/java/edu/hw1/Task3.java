@@ -1,9 +1,6 @@
 package edu.hw1;
 
 public final class Task3 {
-    public Task3() {
-
-    }
 
     @SuppressWarnings("MagicNumber")
     public int countDigits(long a) {
