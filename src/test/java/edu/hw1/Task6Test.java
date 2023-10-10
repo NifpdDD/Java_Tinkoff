@@ -8,7 +8,7 @@ class Task6Test {
 
     @Test
     @DisplayName("1221")
-    public void ifPalindromeNumber1221_ShouldReturnTrue() {
+    void if_palindrome_number_1221_should_return_true() {
         Task6 task6 = new Task6();
         int number = 1221;
         boolean result = task6.isPalindromeDescendant(number);
@@ -17,7 +17,7 @@ class Task6Test {
 
     @Test
     @DisplayName("112 -> 22")
-    public void ifPalindromeNumber112_ShouldReturnTrue() {
+    void if_palindrome_number_112_should_return_true() {
         Task6 task6 = new Task6();
         int number = 112;
         boolean result = task6.isPalindromeDescendant(number);
@@ -26,7 +26,7 @@ class Task6Test {
 
     @Test
     @DisplayName("78411 -> 1551")
-    public void ifPalindromeNumber78411_ShouldReturnTrue() {
+    void if_palindrome_number_78411_should_return_true() {
         Task6 task6 = new Task6();
         int number = 78411;
         boolean result = task6.isPalindromeDescendant(number);
@@ -35,7 +35,7 @@ class Task6Test {
 
     @Test
     @DisplayName("11211230 -> 2333 -> 56 -> 11")
-    public void ifPalindromeNumber11211230_ShouldReturnTrue() {
+    void if_palindrome_number_11211230_should_return_true() {
         Task6 task6 = new Task6();
         int number = 11211230;
         boolean result = task6.isPalindromeDescendant(number);
@@ -44,7 +44,7 @@ class Task6Test {
 
     @Test
     @DisplayName("1234 -> 37")
-    public void ifNonPalindromeNumber_ShouldReturnFalse() {
+    void if_non_palindrome_number_should_return_false() {
         Task6 task6 = new Task6();
         int number = 1234;
         boolean result = task6.isPalindromeDescendant(number);
@@ -52,7 +52,7 @@ class Task6Test {
     }
 
     @Test
-    public void ifSingleDigitNumber_ShouldReturnFalse() {
+    void if_single_digit_number_should_return_false() {
         Task6 task6 = new Task6();
         int number = 5;
         boolean result = task6.isPalindromeDescendant(number);
@@ -60,11 +60,10 @@ class Task6Test {
     }
 
     @Test
-    public void ifNegativeNumber_ShouldReturnFalse() {
+    void if_negative_number_should_return_false() {
         Task6 task6 = new Task6();
         int number = -1221;
         boolean result = task6.isPalindromeDescendant(number);
         Assertions.assertThat(result).isEqualTo(false);
     }
 }
-

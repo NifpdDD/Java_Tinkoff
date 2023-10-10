@@ -1,14 +1,11 @@
 package edu.hw1;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class Task4Test {
     @Test
-    public void ifNestedArraysShouldReturnTrue() {
+    void if_nested_arrays_should_return_true() {
         Task4 task4 = new Task4();
         int[] a = {1, 2, 3, 4};
         int[] b = {0, 6};
@@ -17,17 +14,15 @@ class Task4Test {
     }
 
     @Test
-    public void ifInvalidArrays_ShouldThrowIllegalArgumentException() {
+    void if_invalid_arrays_should_throw_illegal_argument_exception() {
         Task4 task4 = new Task4();
         int[] a = {};
         int[] b = {4, 5, 6};
-        Assertions.assertThatThrownBy(() -> {
-            task4.isNestable(a, b);
-        }).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> task4.isNestable(a, b)).isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
-    public void ifNotNestedArrays_ShouldReturnTrue() {
+    void if_not_nested_arrays_should_return_false() {
         Task4 task4 = new Task4();
         int[] a = {1, 2, 3, 4};
         int[] b = {2, 3};
@@ -36,12 +31,10 @@ class Task4Test {
     }
 
     @Test
-    public void ifNullArrays_ShouldThrowIllegalArgumentException() {
+    void if_null_arrays_should_throw_illegal_argument_exception() {
         Task4 task4 = new Task4();
         int[] a = null;
-        int[] b = {};
-        Assertions.assertThatThrownBy(() -> {
-            task4.isNestable(a, b);
-        }).isInstanceOf(IllegalArgumentException.class);
+        int[] b = {1,2,3};
+        Assertions.assertThatThrownBy(() -> task4.isNestable(a, b)).isInstanceOf(IllegalArgumentException.class);
     }
 }

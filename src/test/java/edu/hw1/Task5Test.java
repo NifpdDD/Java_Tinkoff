@@ -9,7 +9,7 @@ class Task5Test {
 
     @Test
     @DisplayName("hTsii  s aimex dpus rtni.g -> This is a mixed up string.")
-    public void ifValidString1_ShouldReturnFixedString() {
+    public void if_valid_string1_should_return_fixed_string() {
         Task5 task5 = new Task5();
         String input = "hTsii  s aimex dpus rtni.g";
         String result = task5.fixString(input);
@@ -18,7 +18,7 @@ class Task5Test {
 
     @Test
     @DisplayName("badce -> abcde ")
-    public void ifValidString2_ShouldReturnFixedString() {
+    public void if_valid_string2_should_return_fixed_string() {
         Task5 task5 = new Task5();
         String input = "badce";
         String result = task5.fixString(input);
@@ -26,7 +26,7 @@ class Task5Test {
     }
 
     @Test
-    public void ifEmptyString_ShouldReturnErrorMessage() {
+    public void if_empty_string_should_return_error_message() {
         Task5 task5 = new Task5();
         String input = "";
         String result = task5.fixString(input);
@@ -34,7 +34,7 @@ class Task5Test {
     }
 
     @Test
-    public void ifWhitespaceString_ShouldReturnErrorMessage() {
+    public void if_whitespace_string_should_return_error_message() {
         Task5 task5 = new Task5();
         String input = "   ";
         String result = task5.fixString(input);
@@ -42,13 +42,11 @@ class Task5Test {
     }
 
     @Test
-    public void ifNullString_ShouldThrowNullPointerException() {
+    public void if_null_string_should_throw_null_pointer_exception() {
         Task5 task5 = new Task5();
         String input = null;
         Assertions.assertThatThrownBy(() -> {
             task5.fixString(null);
-        }).isInstanceOf(
-            NullPointerException.class);
-
+        }).isInstanceOf(NullPointerException.class);
     }
 }

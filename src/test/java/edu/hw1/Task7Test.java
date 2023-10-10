@@ -1,13 +1,12 @@
 package edu.hw1;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class Task7Test {
 
     @Test
-    public void if6174_ShouldReturn0() {
+    void if_6174_should_return_0() {
         Task7 task7 = new Task7();
         int n = 6174;
         int result = task7.countK(n);
@@ -15,7 +14,7 @@ class Task7Test {
     }
 
     @Test
-    public void ifNegativeNumber_ShouldReturnMinus1() {
+    void if_negative_number_should_return_minus_1() {
         Task7 task7 = new Task7();
         int n = -111;
         int result = task7.countK(n);
@@ -23,7 +22,7 @@ class Task7Test {
     }
 
     @Test
-    public void if1000_ShouldReturnMinus1() {
+    void if_1000_should_return_minus_1() {
         Task7 task7 = new Task7();
         int n = 1000;
         int result = task7.countK(n);
@@ -31,7 +30,7 @@ class Task7Test {
     }
 
     @Test
-    public void if1234_ShouldReturn3() {
+    void if_1234_should_return_3() {
         Task7 task7 = new Task7();
         int n = 1234;
         int result = task7.countK(n);
@@ -39,7 +38,7 @@ class Task7Test {
     }
 
     @Test
-    public void if2223_ShouldReturn3() {
+    void if_2223_should_return_5() {
         Task7 task7 = new Task7();
         int n = 2223;
         int result = task7.countK(n);
@@ -47,7 +46,7 @@ class Task7Test {
     }
 
     @Test
-    public void ifAllDigitsAreEqual_ShouldReturnMinus1() {
+    void if_all_digits_are_equal_should_return_minus_1() {
         Task7 task7 = new Task7();
         int n = 9999;
         int result = task7.countK(n);
