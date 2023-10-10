@@ -5,14 +5,13 @@ public final class Task3 {
 
     }
 
-    private static final int TEN = 10;
-
+    @SuppressWarnings("MagicNumber")
     public int countDigits(long a) {
         long number = a;
         int k = 0;
         if (number != 0) {
             while (number != 0) {
-                number /= TEN;
+                number /= 10;
                 k++;
             }
         } else {
