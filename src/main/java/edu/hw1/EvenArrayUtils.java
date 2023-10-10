@@ -17,6 +17,10 @@ public final class EvenArrayUtils {
      * @return an array of even integers from the original array
      * @throws NullPointerException if the input array is null
      */
+
+
+
+
     public static int[] filter(int[] numbers) {
         Objects.requireNonNull(numbers);
         LOGGER.trace("Filtering an array {}", numbers);
