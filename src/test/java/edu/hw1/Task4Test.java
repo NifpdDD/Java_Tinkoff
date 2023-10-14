@@ -10,7 +10,7 @@ class Task4Test {
         int[] a = {1, 2, 3, 4};
         int[] b = {0, 6};
         boolean result = task4.isNestable(a, b);
-        Assertions.assertThat(result).isEqualTo(true);
+        Assertions.assertThat(result).isTrue();
     }
 
     @Test
@@ -27,7 +27,7 @@ class Task4Test {
         int[] a = {1, 2, 3, 4};
         int[] b = {2, 3};
         boolean result = task4.isNestable(a, b);
-        Assertions.assertThat(result).isEqualTo(false);
+        Assertions.assertThat(result).isFalse();
     }
 
     @Test

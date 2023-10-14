@@ -9,7 +9,7 @@ class Task5Test {
 
     @Test
     @DisplayName("hTsii  s aimex dpus rtni.g -> This is a mixed up string.")
-    public void if_valid_string1_should_return_fixed_string() {
+    void if_valid_string1_should_return_fixed_string() {
         Task5 task5 = new Task5();
         String input = "hTsii  s aimex dpus rtni.g";
         String result = task5.fixString(input);
