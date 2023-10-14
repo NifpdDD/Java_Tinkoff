@@ -19,15 +19,15 @@ class SessionTest {
         int maxAttempts = 5;
         var inputWord = "aboba";
         Session session = new Session(inputWord, maxAttempts);
+        char[] expectedUserAnswer = {'a', '*', '*', '*', 'a'};
+        String expectedMessage = "Hit";
 
         GuessResult result = session.guess("a");
 
         Assertions.assertThat(result).isInstanceOf(GuessResult.SuccessfulGuess.class);
 
-        String expectedMessage = "Hit";
         Assertions.assertThat(result.message()).isEqualTo(expectedMessage);
 
-        char[] expectedUserAnswer = {'a', '*', '*', '*', 'a'};
         Assertions.assertThat(result.state()).isEqualTo(expectedUserAnswer);
     }
 
@@ -36,15 +36,15 @@ class SessionTest {
         int maxAttempts = 5;
         var inputWord = "aboba";
         Session session = new Session(inputWord, maxAttempts);
+        String expectedMessage = "Missed, mistake 1 out of 5";
+        char[] expectedUserAnswer = {'*', '*', '*', '*', '*'};
 
         GuessResult result = session.guess("j");
 
         Assertions.assertThat(result).isInstanceOf(GuessResult.FailedGuess.class);
 
-        char[] expectedUserAnswer = {'*', '*', '*', '*', '*'};
         Assertions.assertThat(result.state()).isEqualTo(expectedUserAnswer);
 
-        String expectedMessage = "Missed, mistake 1 out of 5";
         Assertions.assertThat(result.message()).isEqualTo(expectedMessage);
 
         Assertions.assertThat(session.getAttempts()).isEqualTo(1);
@@ -55,15 +55,15 @@ class SessionTest {
         int maxAttempts = 5;
         var inputWord = "aaa";
         Session session = new Session(inputWord, maxAttempts);
+        char[] expectedUserAnswer = {'a', 'a', 'a'};
+        String expectedMessage = "Congratulations! You have won!";
 
         GuessResult result = session.guess("a");
 
         Assertions.assertThat(result).isInstanceOf(GuessResult.Win.class);
 
-        char[] expectedUserAnswer = {'a', 'a', 'a'};
         Assertions.assertThat(result.state()).isEqualTo(expectedUserAnswer);
 
-        String expectedMessage = "Congratulations! You have won!";
         Assertions.assertThat(result.message()).isEqualTo(expectedMessage);
     }
 
@@ -72,15 +72,15 @@ class SessionTest {
         int maxAttempts = 1;
         var inputWord = "dog";
         Session session = new Session(inputWord, maxAttempts);
+        char[] expectedUserAnswer = {'d', 'o', 'g'};
+        String expectedMessage = "You lost";
 
         GuessResult result = session.guess("l");
 
         Assertions.assertThat(result).isInstanceOf(GuessResult.Defeat.class);
 
-        char[] expectedUserAnswer = {'d', 'o', 'g'};
         Assertions.assertThat(result.state()).isEqualTo(expectedUserAnswer);
 
-        String expectedMessage = "You lost";
         Assertions.assertThat(result.message()).isEqualTo(expectedMessage);
     }
 
