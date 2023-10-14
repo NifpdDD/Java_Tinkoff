@@ -24,6 +24,14 @@ public class Session {
     }
 
     @NotNull GuessResult guess(String guess) {
+        boolean seccessfullGues = isSuccessfullGuess(guess);
+        if (seccessfullGues) {
+            return createSuccessRecord();
+        }
+        return createFailedRecord();
+    }
+
+    private boolean isSuccessfullGuess(String guess) {
         boolean seccessfullGues = false;
         for (int i = 0; i < answer.length(); i++) {
             if (Character.toLowerCase(guess.charAt(0)) == Character.toLowerCase(answer.charAt(i))) {
@@ -31,22 +39,26 @@ public class Session {
                 seccessfullGues = true;
             }
         }
-        if (seccessfullGues) {
-            if (isWin()) {
-                return new GuessResult.Win(userAnswer, "Congratulations! You have won!");
-            } else {
-                return new GuessResult.SuccessfulGuess(userAnswer, "Hit");
-            }
+        return seccessfullGues;
+    }
+
+    @NotNull private GuessResult createFailedRecord() {
+        if (isDefeat()) {
+            return new GuessResult.Defeat(answer.toCharArray(), "You lost");
         } else {
-            if (isDefeat()) {
-                return new GuessResult.Defeat(answer.toCharArray(), "You lost");
-            } else {
-                attempts++;
-                return new GuessResult.FailedGuess(
-                    userAnswer,
-                    "Missed, mistake " + attempts + " out of " + maxAttempts
-                );
-            }
+            attempts++;
+            return new GuessResult.FailedGuess(
+                userAnswer,
+                "Missed, mistake " + attempts + " out of " + maxAttempts
+            );
+        }
+    }
+
+    @NotNull private GuessResult createSuccessRecord() {
+        if (isWin()) {
+            return new GuessResult.Win(userAnswer, "Congratulations! You have won!");
+        } else {
+            return new GuessResult.SuccessfulGuess(userAnswer, "Hit");
         }
     }
 
