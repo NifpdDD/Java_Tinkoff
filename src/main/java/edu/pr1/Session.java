@@ -72,8 +72,8 @@ public class Session {
 
     private static void checkWords(String word) {
         checkWordEmptyOrWhitespace(word);
-        hasWordCorrectLength(word);
-        hasWordDigits(word);
+        checkWordCorrectLength(word);
+        checkWordDigits(word);
     }
 
     private static void checkWordEmptyOrWhitespace(String word) {
@@ -84,7 +84,7 @@ public class Session {
     }
 
     @SuppressWarnings("MagicNumber")
-    private static void hasWordCorrectLength(String word) {
+    private static void checkWordCorrectLength(String word) {
         if (word.length() < 3 || word.length() >= 50) {
             throw new IllegalArgumentException(
                 "Word in dictionary length should be between 3 and 49 characters. Word \"" + word
@@ -92,7 +92,7 @@ public class Session {
         }
     }
 
-    private static void hasWordDigits(String word) {
+    private static void checkWordDigits(String word) {
         for (char c : word.toCharArray()) {
             if (Character.isDigit(c)) {
                 throw new IllegalArgumentException("Word cannot contain digits: \"" + word + "\"");
