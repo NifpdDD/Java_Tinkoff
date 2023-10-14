@@ -67,7 +67,7 @@ class Task8Test {
         int n = 0;
         int shift = 50;
         int result = task8.rotateRight(n, shift);
-        Assertions.assertThat(result).isEqualTo(0);
+        Assertions.assertThat(result).isZero();
     }
 
     @Test
@@ -76,6 +76,6 @@ class Task8Test {
         int n = 0;
         int shift = 10000;
         int result = task8.rotateLeft(n, shift);
-        Assertions.assertThat(result).isEqualTo(0);
+        Assertions.assertThat(result).isZero();
     }
 }

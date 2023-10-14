@@ -10,7 +10,7 @@ class Task7Test {
         Task7 task7 = new Task7();
         int n = 6174;
         int result = task7.countK(n);
-        Assertions.assertThat(result).isEqualTo(0);
+        Assertions.assertThat(result).isZero();
     }
 
     @Test
