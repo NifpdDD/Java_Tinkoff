@@ -14,7 +14,7 @@ public class Session {
 
     public Session(String answer, int maxAttempts) {
         checkWords(answer);
-        if (maxAttempts < 0) {
+        if (maxAttempts <= 0) {
             throw new IllegalArgumentException("Значение maxAttempts не может быть отрицательным");
         }
         this.answer = answer;
