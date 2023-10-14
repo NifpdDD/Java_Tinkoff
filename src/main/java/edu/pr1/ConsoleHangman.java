@@ -11,7 +11,7 @@ class ConsoleHangman {
     private static final String[] WORDS = {"Aaa"};
 
     public void run() {
-        Dictionary dictionary = new Dictionary(WORDS);
+        var dictionary = new Dictionary(WORDS);
         Session session = new Session(dictionary.randomWord(), MAX_ATTEMPTS);
         Scanner scanner = new Scanner(System.in);
         GuessResult yourGuess = null;
@@ -26,10 +26,8 @@ class ConsoleHangman {
             }
             if (input.length() == 1 && input.charAt(0) != ' ' && !Character.isDigit(input.charAt(0))) {
                 yourGuess = tryGuess(session, input);
-                if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("The word: " + new String(yourGuess.state()));
-                    LOGGER.info(yourGuess.message());
-                }
+                LOGGER.info("The word: " + new String(yourGuess.state()));
+                LOGGER.info(yourGuess.message());
             } else {
                 LOGGER.info("Wrong input! Try again!");
             }
