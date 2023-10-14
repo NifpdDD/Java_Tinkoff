@@ -45,21 +45,21 @@ public class Session {
     @NotNull private GuessResult createFailedRecord() {
         if (isDefeat()) {
             return new GuessResult.Defeat(answer.toCharArray(), "You lost");
-        } else {
-            attempts++;
-            return new GuessResult.FailedGuess(
-                userAnswer,
-                "Missed, mistake " + attempts + " out of " + maxAttempts
-            );
         }
+        attempts++;
+        return new GuessResult.FailedGuess(
+            userAnswer,
+            "Missed, mistake " + attempts + " out of " + maxAttempts
+        );
+
     }
 
     @NotNull private GuessResult createSuccessRecord() {
         if (isWin()) {
             return new GuessResult.Win(userAnswer, "Congratulations! You have won!");
-        } else {
-            return new GuessResult.SuccessfulGuess(userAnswer, "Hit");
         }
+        return new GuessResult.SuccessfulGuess(userAnswer, "Hit");
+
     }
 
     private boolean isWin() {
@@ -71,12 +71,12 @@ public class Session {
     }
 
     private static void checkWords(String word) {
-        isWordEmptyOrWhitespace(word);
+        checkWordEmptyOrWhitespace(word);
         hasWordCorrectLength(word);
         hasWordDigits(word);
     }
 
-    private static void isWordEmptyOrWhitespace(String word) {
+    private static void checkWordEmptyOrWhitespace(String word) {
         if (word.trim().isEmpty()) {
             throw new IllegalArgumentException(
                 "Word in dictionary cannot be empty or contain only whitespace:");
