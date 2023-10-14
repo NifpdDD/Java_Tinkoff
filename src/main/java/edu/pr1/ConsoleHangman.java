@@ -15,20 +15,25 @@ class ConsoleHangman {
         Session session = new Session(dictionary.randomWord(), MAX_ATTEMPTS);
         Scanner scanner = new Scanner(System.in);
         GuessResult yourGuess = null;
+        LOGGER.info("Guess a letter");
+        String input;
         do {
             try {
-                LOGGER.info("Guess a letter");
-                String s = scanner.nextLine();
-                if (s.length() == 1 && s.charAt(0) != ' ' && !Character.isDigit(s.charAt(0))) {
-                    yourGuess = tryGuess(session, s);
-                    printState(yourGuess);
-                } else {
-                    LOGGER.info("Wrong input! Try again!");
-                }
+                input = scanner.nextLine();
             } catch (NoSuchElementException e) {
                 LOGGER.info("You gave up!");
                 break;
             }
+            if (input.length() == 1 && input.charAt(0) != ' ' && !Character.isDigit(input.charAt(0))) {
+                yourGuess = tryGuess(session, input);
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("The word: " + new String(yourGuess.state()));
+                    LOGGER.info(yourGuess.message());
+                }
+            } else {
+                LOGGER.info("Wrong input! Try again!");
+            }
+
         } while (!(yourGuess instanceof GuessResult.Defeat || yourGuess instanceof GuessResult.Win));
 
     }
@@ -37,11 +42,5 @@ class ConsoleHangman {
         return session.guess(input);
     }
 
-    private void printState(GuessResult guess) {
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("The word: " + new String(guess.state()));
-            LOGGER.info(guess.message());
-        }
-    }
 }
 
