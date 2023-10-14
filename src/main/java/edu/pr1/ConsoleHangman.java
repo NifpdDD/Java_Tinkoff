@@ -15,10 +15,10 @@ class ConsoleHangman {
         Session session = new Session(dictionary.randomWord(), MAX_ATTEMPTS);
         Scanner scanner = new Scanner(System.in);
         GuessResult yourGuess = null;
-        LOGGER.info("Guess a letter");
-        String s = scanner.nextLine();
         do {
             try {
+                LOGGER.info("Guess a letter");
+                String s = scanner.nextLine();
                 if (s.length() == 1 && s.charAt(0) != ' ' && !Character.isDigit(s.charAt(0))) {
                     yourGuess = tryGuess(session, s);
                     printState(yourGuess);
@@ -26,7 +26,7 @@ class ConsoleHangman {
                     LOGGER.info("Wrong input! Try again!");
                 }
             } catch (NoSuchElementException e) {
-                LOGGER.info("You lost!");
+                LOGGER.info("You gave up!");
                 break;
             }
         } while (!(yourGuess instanceof GuessResult.Defeat || yourGuess instanceof GuessResult.Win));
