@@ -22,6 +22,6 @@ public class Rectangle {
     }
 
     public double area() {
-        return (double)width * height;
+        return (double) width * height;
     }
 }
