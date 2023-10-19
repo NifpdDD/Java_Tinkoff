@@ -48,18 +48,17 @@ class Task3Test {
     }
 
     @Test
-    void if_faulty_chanche_1_should_return_e () {
+    void if_faulty_chanche_1_should_return_e() {
         var fcm = new FaultyConnectionManager();
-        var pce = new PopularCommandExecutor(fcm,5);
+        var pce = new PopularCommandExecutor(fcm, 5);
 
-        Assertions.assertThatThrownBy(()->pce.updatePackages()).isInstanceOf(ConnectionException.class);
+        Assertions.assertThatThrownBy(() -> pce.updatePackages()).isInstanceOf(ConnectionException.class);
     }
 
     @Test
-    void if_faulty_chanche_0_should_return_ok () {
-
+    void if_faulty_chanche_0_should_return_ok() {
         var dcm = new DefaultConnectionManager();
-        var pce = new PopularCommandExecutor(dcm,5);
+        var pce = new PopularCommandExecutor(dcm, 5);
 
         var flag = pce.tryExecute("пиво");
 
