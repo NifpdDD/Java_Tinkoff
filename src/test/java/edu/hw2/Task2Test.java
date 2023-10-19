@@ -19,10 +19,11 @@ class Task2Test {
     @ParameterizedTest
     @MethodSource("rectangles")
     void rectangle_area(Rectangle rect) {
-        rect = rect.setWidth(20);
-        rect = rect.setHeight(10);
+        rect = rect.setWidth(20).setHeight(10);
 
-        assertThat(rect.area()).isEqualTo(200.0);
+        double area = rect.area();
+
+        assertThat(area).isEqualTo(200.0);
     }
 
     @Test
@@ -30,7 +31,8 @@ class Task2Test {
         var s = new Square();
 
         s = s.setSize(5);
+        double area = s.area();
 
-        assertThat(s.area()).isEqualTo(25);
+        assertThat(area).isEqualTo(25);
     }
 }
