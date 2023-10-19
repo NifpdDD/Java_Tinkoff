@@ -9,16 +9,18 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class Task1Test {
-    @Test void if_const_should_return_const() {
+    @Test
+    void if_const_should_return_const() {
         int number = 1;
 
         var cosnant = new Constant(number);
         double evaluate = cosnant.evaluate();
-        
+
         Assertions.assertThat(evaluate).isEqualTo(1);
     }
 
-    @Test void if_neg_const_should_return_neg_const() {
+    @Test
+    void if_neg_const_should_return_neg_const() {
         var constant = new Constant(7);
 
         var negconst = new Negate(constant);
