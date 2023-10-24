@@ -1,7 +1,10 @@
 package edu.hw3;
 
-public class Task31 {
-    public static String atbashCipher(String text) {
+import org.jetbrains.annotations.NotNull;
+
+public class Task1 {
+
+    public String atbashCipher(@NotNull String text) {
         StringBuilder result = new StringBuilder();
         buildString(text, result);
         return result.toString();
@@ -17,6 +20,7 @@ public class Task31 {
         }
     }
 
+    @SuppressWarnings("MagicNumber")
     private static void changeLetter(StringBuilder result, char c) {
         if (Character.isUpperCase(c)) {
             result.append((char) (155 - c));
@@ -24,4 +28,5 @@ public class Task31 {
             result.append((char) (219 - c));
         }
     }
+
 }
