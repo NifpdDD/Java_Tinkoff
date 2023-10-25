@@ -14,7 +14,7 @@ public class Contact {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (!(obj instanceof Contact)) {
             return false;
         }
         Contact other = (Contact) obj;

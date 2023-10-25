@@ -1,5 +1,6 @@
 package edu.hw3.task6;
 
+import edu.hw3.Contact;
 import java.util.Objects;
 
 public class Stock {
@@ -23,7 +24,7 @@ public class Stock {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (!(obj instanceof Stock)) {
             return false;
         }
         Stock other = (Stock) obj;
