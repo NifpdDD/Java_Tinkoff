@@ -7,20 +7,17 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.Arrays;
-import java.util.EmptyStackException;
-import java.util.List;
-
 class Task2Test {
 
     static Arguments[] inputBrackets() {
         return new Arguments[] {
-            Arguments.of("()()()", new String[]{"()", "()", "()"}),
-            Arguments.of("((()))", new String[]{"((()))"}),
-            Arguments.of("((()))(())()()(()())", new String[]{"((()))", "(())", "()", "()", "(()())"}),
-            Arguments.of("((())())(()(()()))", new String[]{"((())())", "(()(()()))"})
+            Arguments.of("()()()", new String[] {"()", "()", "()"}),
+            Arguments.of("((()))", new String[] {"((()))"}),
+            Arguments.of("((()))(())()()(()())", new String[] {"((()))", "(())", "()", "()", "(()())"}),
+            Arguments.of("((())())(()(()()))", new String[] {"((())())", "(()(()()))"})
         };
     }
+
     @ParameterizedTest
     @MethodSource("inputBrackets")
     void if_corect_brackets_should_return_mass(String input, String[] expectedOutput) {
@@ -41,7 +38,7 @@ class Task2Test {
     }
 
     @ParameterizedTest
-    @CsvSource({"((())))","()(", "' '"})
+    @CsvSource({"((())))", "()(", "' '"})
     void if_not_corect_brackets_should_return_e(String str) {
         var t = new Task2();
 
@@ -50,13 +47,12 @@ class Task2Test {
         }).isInstanceOf(IllegalArgumentException.class);
     }
 
-
     @Test
     void if_null_should_return_e() {
         var t = new Task2();
 
         Assertions.assertThatThrownBy(() -> {
             t.groupBrackets(null);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(NullPointerException.class);
     }
 }

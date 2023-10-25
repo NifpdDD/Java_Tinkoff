@@ -24,7 +24,7 @@ class Task1Test {
 
         Assertions.assertThatThrownBy(() -> {
             t.atbashCipher(null);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(NullPointerException.class);
 
     }
 

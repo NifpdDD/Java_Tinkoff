@@ -1,10 +1,9 @@
 package edu.hw3;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Task1 {
 
-    public String atbashCipher(@NotNull String text) {
+    public String atbashCipher(String text) {
         StringBuilder result = new StringBuilder();
         buildString(text, result);
         return result.toString();
