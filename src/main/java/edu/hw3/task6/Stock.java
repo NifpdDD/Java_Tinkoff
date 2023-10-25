@@ -1,6 +1,5 @@
 package edu.hw3.task6;
 
-import edu.hw3.Contact;
 import java.util.Objects;
 
 public class Stock {
