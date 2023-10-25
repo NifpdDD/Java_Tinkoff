@@ -42,6 +42,16 @@ class ContactTest {
 
         };
     }
+    @ParameterizedTest
+    @MethodSource("contacts")
+    void if_correct_contacts_should_parse(String[] contacts, Contact.Sortby sort, Contact[] parseContacts) {
+        var c = new Contact();
+
+        var parse = c.parseContacts(contacts, sort);
+
+        Assertions.assertThat(parse).isEqualTo(parseContacts);
+    }
+
 
     static Arguments[] error_contacts() {
         return new Arguments[] {
