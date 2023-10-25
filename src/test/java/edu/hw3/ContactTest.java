@@ -8,7 +8,7 @@ import static edu.hw3.Contact.Sortby.ASC;
 import static edu.hw3.Contact.Sortby.DESC;
 
 class ContactTest {
-    static Arguments[] contacts() {
+    static Arguments[] contactsAsc() {
         return new Arguments[] {
             Arguments.of(
                 new String[] {"John Locke", "Thomas Aquinas", "David Hume", "Rene Descartes"},
@@ -42,9 +42,34 @@ class ContactTest {
 
         };
     }
+
+    static Arguments[] contactsDesc() {
+        return new Arguments[] {
+            Arguments.of(
+                new String[] {"Paul Erdos", "Leonhard Euler", "Carl Gauss"},
+                DESC,
+                new Contact[] {
+                    new Contact("Carl Gauss"),
+                    new Contact("Leonhard Euler"),
+                    new Contact("Paul Erdos"),
+                }
+            )
+        };
+    }
+
     @ParameterizedTest
-    @MethodSource("contacts")
-    void if_correct_contacts_should_parse(String[] contacts, Contact.Sortby sort, Contact[] parseContacts) {
+    @MethodSource("contactsDesc")
+    void if_correct_contacts_should_parse_desc(String[] contacts, Contact.Sortby sort, Contact[] parseContacts) {
+        var c = new Contact();
+
+        var parse = c.parseContacts(contacts, sort);
+
+        Assertions.assertThat(parse).isEqualTo(parseContacts);
+    }
+
+    @ParameterizedTest
+    @MethodSource("contactsAsc")
+    void if_correct_contacts_should_parse_asc(String[] contacts, Contact.Sortby sort, Contact[] parseContacts) {
         var c = new Contact();
 
         var parse = c.parseContacts(contacts, sort);

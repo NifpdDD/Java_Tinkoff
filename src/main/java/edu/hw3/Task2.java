@@ -10,7 +10,12 @@ public class Task2 {
         StringBuilder sb = new StringBuilder();
         for (var bracket : str) {
             checkChar(bracket);
-            toStack(bracket, stack);
+            if (bracket == '(') {
+                stack.push(bracket);
+            } else {
+                checkStack(stack.empty());
+                stack.pop();
+            }
             sb.append(bracket);
             if (stack.empty()) {
                 arrayList.add(String.valueOf(sb));
@@ -19,15 +24,6 @@ public class Task2 {
         }
         checkStack(!stack.empty());
         return arrayList.toArray(new String[0]);
-    }
-
-    private static void toStack(char bracket, Stack<Character> stack) {
-        if (bracket == '(') {
-            stack.push(bracket);
-        } else {
-            checkStack(stack.empty());
-            stack.pop();
-        }
     }
 
     private static void checkStack(boolean stack) {
