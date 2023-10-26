@@ -12,7 +12,6 @@ class ContactTest {
         return new Arguments[] {
             Arguments.of(
                 new String[] {"John Locke", "Thomas Aquinas", "David Hume", "Rene Descartes"},
-                ASC,
                 new Contact[] {
                     new Contact("Thomas Aquinas"),
                     new Contact("Rene Descartes"),
@@ -21,17 +20,7 @@ class ContactTest {
                 }
             ),
             Arguments.of(
-                new String[] {"Paul Erdos", "Leonhard Euler", "Carl Gauss"},
-                DESC,
-                new Contact[] {
-                    new Contact("Carl Gauss"),
-                    new Contact("Leonhard Euler"),
-                    new Contact("Paul Erdos"),
-                }
-            ),
-            Arguments.of(
                 new String[] {"John Doe", "Pivovoz", "Alex", "Michael Brown"},
-                ASC,
                 new Contact[] {
                     new Contact("Alex"),
                     new Contact("Michael Brown"),
@@ -47,7 +36,6 @@ class ContactTest {
         return new Arguments[] {
             Arguments.of(
                 new String[] {"Paul Erdos", "Leonhard Euler", "Carl Gauss"},
-                DESC,
                 new Contact[] {
                     new Contact("Carl Gauss"),
                     new Contact("Leonhard Euler"),
@@ -59,20 +47,20 @@ class ContactTest {
 
     @ParameterizedTest
     @MethodSource("contactsDesc")
-    void if_correct_contacts_should_parse_desc(String[] contacts, Contact.Sortby sort, Contact[] parseContacts) {
+    void if_correct_contacts_should_parse_desc(String[] contacts, Contact[] parseContacts) {
         var c = new Contact();
 
-        var parse = c.parseContacts(contacts, sort);
+        var parse = c.parseContacts(contacts,DESC);
 
         Assertions.assertThat(parse).isEqualTo(parseContacts);
     }
 
     @ParameterizedTest
     @MethodSource("contactsAsc")
-    void if_correct_contacts_should_parse_asc(String[] contacts, Contact.Sortby sort, Contact[] parseContacts) {
+    void if_correct_contacts_should_parse_asc(String[] contacts, Contact[] parseContacts) {
         var c = new Contact();
 
-        var parse = c.parseContacts(contacts, sort);
+        var parse = c.parseContacts(contacts, ASC);
 
         Assertions.assertThat(parse).isEqualTo(parseContacts);
     }
