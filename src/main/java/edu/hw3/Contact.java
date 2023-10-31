@@ -14,10 +14,9 @@ public class Contact {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Contact)) {
+        if (!(obj instanceof Contact other)) {
             return false;
         }
-        Contact other = (Contact) obj;
         return Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName);
     }
 
