@@ -9,13 +9,13 @@ import java.util.Queue;
 public class MazeSolverBFS implements Solver {
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
-        if (start.row() < 0 || start.col() > maze.getHeight() - 1 || end.row() < 0 ||
-            start.col() > maze.getWidth() - 1) {
+        if (start.row() < 0 || start.col() > maze.height() - 1 || end.row() < 0
+            || start.col() > maze.width() - 1) {
             throw new IllegalArgumentException();
         }
-        int width = maze.getWidth();
-        int height = maze.getHeight();
-        Cell[][] cells = maze.getGrid();
+        int width = maze.width();
+        int height = maze.height();
+        Cell[][] cells = maze.grid();
 
         boolean[][] visited = new boolean[height][width];
         Coordinate[][] parent = new Coordinate[height][width];
@@ -74,7 +74,6 @@ public class MazeSolverBFS implements Solver {
         if (y - 1 >= 0 && cells[y - 1][x].type() == Cell.Type.PASSAGE && !visited[y - 1][x]) {
             neighbors.add(new Coordinate(y - 1, x));
         }
-
 
         return neighbors;
     }

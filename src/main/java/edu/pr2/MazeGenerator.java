@@ -10,11 +10,9 @@ public class MazeGenerator implements Generator {
     private final int height;
     private final Cell[][] cells;
 
-    public MazeGenerator(int height, int width) {
-        if (height<=0 || width <=0)
-            throw new IllegalArgumentException();
-        this.width = width;
-        this.height = height;
+    public MazeGenerator(Maze maze) {
+        this.width = maze.width();
+        this.height = maze.height();
         this.cells = new Cell[height][width];
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {

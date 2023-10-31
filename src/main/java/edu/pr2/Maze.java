@@ -1,29 +1,11 @@
 package edu.pr2;
 
-public final class Maze {
-    private final int height;
+public record Maze(int height, int width, Cell[][] grid) {
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    private final int width;
-
-    public Cell[][] getGrid() {
-        return grid;
-    }
-
-    private final Cell[][] grid;
-
-
-    public Maze(int height, int width, Cell[][] grid) {
-        this.height = height;
-        this.width = width;
-        this.grid = grid;
+    public Maze {
+        if (height <= 0 || width <= 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
 }

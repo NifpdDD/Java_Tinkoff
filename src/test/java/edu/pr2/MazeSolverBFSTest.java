@@ -16,11 +16,24 @@ class MazeSolverBFSTest {
             {{new Cell(Cell.Type.PASSAGE), new Cell(Cell.Type.PASSAGE)},
                 {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
         var maze = new Maze(2, 2, cells);
-        var expectedPath = new ArrayList<>(Arrays.asList(new ));
+        var expectedPath = new ArrayList<>(Arrays.asList(new Coordinate(1,1), new Coordinate(0,1), new Coordinate(0,0)));
         var s = new MazeSolverBFS();
 
-        var path = s.solve(maze,new Coordinate(1,1),new Coordinate(0,1));
+        var path = s.solve(maze,new Coordinate(1,1),new Coordinate(0,0));
 
-        Assertions.assertThat(prettyMazePath).isEqualTo(stringMazePath);
+        Assertions.assertThat(path).isEqualTo(expectedPath);
+    }
+    @Test
+    void if_path_not_exist_should_return_empty_list() {
+        Cell[][] cells =
+            {{new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)},
+                {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
+        var maze = new Maze(2, 2, cells);
+        var expectedPath = new ArrayList<>();
+        var s = new MazeSolverBFS();
+
+        var path = s.solve(maze,new Coordinate(1,1),new Coordinate(0,0));
+
+        Assertions.assertThat(path).isEqualTo(expectedPath);
     }
 }
