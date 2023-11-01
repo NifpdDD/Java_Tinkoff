@@ -40,7 +40,7 @@ public class MazeSolverBFS implements Solver {
 
         }
 
-        return new ArrayList<>(); // Путь не найден
+        return new ArrayList<>();
     }
 
     private List<Coordinate> reconstructPath(Coordinate[][] parent, Coordinate start, Coordinate end) {
@@ -49,7 +49,7 @@ public class MazeSolverBFS implements Solver {
 
         while (!current.equals(start)) {
             path.add(current);
-            current = parent[current.row()][current.col()]; // Здесь индексы тоже поменялись
+            current = parent[current.row()][current.col()];
         }
 
         path.add(start);

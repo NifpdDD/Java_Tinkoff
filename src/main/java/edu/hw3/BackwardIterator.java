@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 public class BackwardIterator<T> implements Iterator<T> {
-    private List<T> collection;
+    private final List<T> collection;
     private int currentIndex;
 
     public BackwardIterator(List<T> collection) {
