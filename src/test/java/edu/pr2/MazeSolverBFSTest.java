@@ -17,9 +17,9 @@ class MazeSolverBFSTest {
                 {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
         var maze = new Maze(2, 2, cells);
         var expectedPath = new ArrayList<>(Arrays.asList(new Coordinate(1,1), new Coordinate(0,1), new Coordinate(0,0)));
-        var s = new MazeSolverBFS();
+        var solverBFS = new MazeSolverBFS();
 
-        var path = s.solve(maze,new Coordinate(1,1),new Coordinate(0,0));
+        var path = solverBFS.solve(maze,new Coordinate(1,1),new Coordinate(0,0));
 
         Assertions.assertThat(path).isEqualTo(expectedPath);
     }
