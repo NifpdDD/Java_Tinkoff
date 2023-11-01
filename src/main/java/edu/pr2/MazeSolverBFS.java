@@ -9,10 +9,7 @@ import java.util.Queue;
 public class MazeSolverBFS implements Solver {
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
-        if (start.row() < 0 || start.col() > maze.height() - 1 || end.row() < 0
-            || start.col() > maze.width() - 1) {
-            throw new IllegalArgumentException();
-        }
+        checkSolve(maze, start, end);
         int width = maze.width();
         int height = maze.height();
         Cell[][] cells = maze.grid();
@@ -40,7 +37,14 @@ public class MazeSolverBFS implements Solver {
 
         }
 
-        return new ArrayList<>(); // Путь не найден
+        return new ArrayList<>();
+    }
+
+    private static void checkSolve(Maze maze, Coordinate start, Coordinate end) {
+        if (start.row() < 0 || start.col() > maze.height() - 1 || end.row() < 0
+            || start.col() > maze.width() - 1) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Coordinate> reconstructPath(Coordinate[][] parent, Coordinate start, Coordinate end) {
@@ -49,7 +53,7 @@ public class MazeSolverBFS implements Solver {
 
         while (!current.equals(start)) {
             path.add(current);
-            current = parent[current.row()][current.col()]; // Здесь индексы тоже поменялись
+            current = parent[current.row()][current.col()];
         }
 
         path.add(start);

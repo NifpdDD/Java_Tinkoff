@@ -9,6 +9,7 @@ public class MazeGenerator implements Generator {
     private final int width;
     private final int height;
     private final Cell[][] cells;
+    private final Random random = new Random();
 
     public MazeGenerator(Maze maze) {
         this.width = maze.width();
@@ -20,8 +21,6 @@ public class MazeGenerator implements Generator {
             }
         }
     }
-
-    Random random = new Random();
 
     @Override
     public Maze generate() {
@@ -35,7 +34,7 @@ public class MazeGenerator implements Generator {
             int[] current = stack.peek();
             x = current[0];
             y = current[1];
-            int[] randomNeighbor = isHasUnvisitedNeighbor(height, width, DIRECTIONS, x, y);
+            int[] randomNeighbor = isHasUnvisitedNeighbor(height, width, x, y);
             if (randomNeighbor != null) {
                 int newX = x + randomNeighbor[0] * 2;
                 int newY = y + randomNeighbor[1] * 2;
@@ -50,9 +49,9 @@ public class MazeGenerator implements Generator {
         return new Maze(height, width, cells);
     }
 
-    private int[] isHasUnvisitedNeighbor(int height, int width, int[][] directions, int x, int y) {
+    private int[] isHasUnvisitedNeighbor(int height, int width, int x, int y) {
         ArrayList<int[]> list = new ArrayList<>();
-        for (int[] dir : directions) {
+        for (int[] dir : MazeGenerator.DIRECTIONS) {
             int newX = x + dir[0] * 2;
             int newY = y + dir[1] * 2;
 
