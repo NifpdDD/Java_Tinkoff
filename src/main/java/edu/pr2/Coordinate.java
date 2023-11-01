@@ -9,7 +9,8 @@ public record Coordinate(int row, int col) {
         }
     }
 
-    @Override public boolean equals(Object o) {
+    @Override
+    public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
