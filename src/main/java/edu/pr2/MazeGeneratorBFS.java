@@ -28,18 +28,19 @@ public class MazeGeneratorBFS implements Generator {
     }
 
     @NotNull private Maze bfs(int x, int y) {
-        Stack<int[]> stack = new Stack<>();
-        stack.push(new int[] {x, y});
+        Stack<Coordinate> stack = new Stack<>();
+        stack.push(new Coordinate(y, x));
         cells[y][x] = new Cell(Cell.Type.PASSAGE);
-
         while (!stack.isEmpty()) {
-            int[] randomNeighbor = isHasUnvisitedNeighbor(height, width, x, y);
+            var current = stack.peek();
+            int[] randomNeighbor = isHasUnvisitedNeighbor(height, width, current.col(), current.row());
             if (randomNeighbor != null) {
-                int newX = x + randomNeighbor[0] * 2;
-                int newY = y + randomNeighbor[1] * 2;
+                int newX = current.col() + randomNeighbor[0] * 2;
+                int newY = current.row() + randomNeighbor[1] * 2;
                 cells[newY][newX] = new Cell(Cell.Type.PASSAGE);
-                cells[y + randomNeighbor[1]][x + randomNeighbor[0]] = new Cell(Cell.Type.PASSAGE);
-                stack.push(new int[] {newX, newY});
+                cells[current.row() + randomNeighbor[1]][current.col() + randomNeighbor[0]] =
+                    new Cell(Cell.Type.PASSAGE);
+                stack.push(new Coordinate(newY, newX));
             } else {
                 stack.pop();
             }

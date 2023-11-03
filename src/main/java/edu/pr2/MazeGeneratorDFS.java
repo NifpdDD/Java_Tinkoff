@@ -29,7 +29,7 @@ public class MazeGeneratorDFS implements Generator {
     private void dfs(int x, int y) {
         cells[y][x] = new Cell(Cell.Type.PASSAGE);
 
-        int[][] shuffledDirections = shuffleArray(DIRECTIONS);
+        int[][] shuffledDirections = shuffleArray();
 
         for (int[] dir : shuffledDirections) {
             int newX = x + dir[0] * 2;
@@ -43,8 +43,8 @@ public class MazeGeneratorDFS implements Generator {
         }
     }
 
-    private int[][] shuffleArray(int[][] array) {
-        int[][] shuffledArray = array.clone();
+    private int[][] shuffleArray() {
+        int[][] shuffledArray = MazeGeneratorDFS.DIRECTIONS.clone();
         for (int i = shuffledArray.length - 1; i > 0; i--) {
             int index = random.nextInt(i + 1);
             int[] temp = shuffledArray[index];
