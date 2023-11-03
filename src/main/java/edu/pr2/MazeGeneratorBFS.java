@@ -3,15 +3,16 @@ package edu.pr2;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
+import org.jetbrains.annotations.NotNull;
 
-public class MazeGenerator implements Generator {
+public class MazeGeneratorBFS implements Generator {
     protected static final int[][] DIRECTIONS = new int[][] {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
     private final int width;
     private final int height;
     private final Cell[][] cells;
     private final Random random = new Random();
 
-    public MazeGenerator(Maze maze) {
+    public MazeGeneratorBFS(Maze maze) {
         this.width = maze.width();
         this.height = maze.height();
         this.cells = new Cell[height][width];
@@ -22,18 +23,16 @@ public class MazeGenerator implements Generator {
         }
     }
 
-    @Override
-    public Maze generate() {
+    @Override public Maze generate() {
+        return bfs(1, 1);
+    }
+
+    @NotNull private Maze bfs(int x, int y) {
         Stack<int[]> stack = new Stack<>();
-        int y = 1;
-        int x = 1;
         stack.push(new int[] {x, y});
         cells[y][x] = new Cell(Cell.Type.PASSAGE);
 
         while (!stack.isEmpty()) {
-            int[] current = stack.peek();
-            x = current[0];
-            y = current[1];
             int[] randomNeighbor = isHasUnvisitedNeighbor(height, width, x, y);
             if (randomNeighbor != null) {
                 int newX = x + randomNeighbor[0] * 2;
@@ -51,7 +50,7 @@ public class MazeGenerator implements Generator {
 
     private int[] isHasUnvisitedNeighbor(int height, int width, int x, int y) {
         ArrayList<int[]> list = new ArrayList<>();
-        for (int[] dir : MazeGenerator.DIRECTIONS) {
+        for (int[] dir : MazeGeneratorBFS.DIRECTIONS) {
             int newX = x + dir[0] * 2;
             int newY = y + dir[1] * 2;
 
