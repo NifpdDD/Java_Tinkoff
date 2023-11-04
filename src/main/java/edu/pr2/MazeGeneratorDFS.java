@@ -1,13 +1,14 @@
 package edu.pr2;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class MazeGeneratorDFS implements Generator {
     private final int width;
     private final int height;
     private final Cell[][] cells;
-    private final Random random = new Random();
-    protected static final int[][] DIRECTIONS = new int[][] {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    private static final List<int[]> DIRECTIONS = new ArrayList<>();
 
     public MazeGeneratorDFS(Maze maze) {
         this.width = maze.width();
@@ -22,6 +23,10 @@ public class MazeGeneratorDFS implements Generator {
 
     @Override
     public Maze generate() {
+        DIRECTIONS.add(new int[] {1, 0});
+        DIRECTIONS.add(new int[] {-1, 0});
+        DIRECTIONS.add(new int[] {0, 1});
+        DIRECTIONS.add(new int[] {0, -1});
         dfs(1, 1);
         return new Maze(height, width, cells);
     }
@@ -29,9 +34,9 @@ public class MazeGeneratorDFS implements Generator {
     private void dfs(int x, int y) {
         cells[y][x] = new Cell(Cell.Type.PASSAGE);
 
-        int[][] shuffledDirections = shuffleArray();
+        Collections.shuffle(DIRECTIONS);
 
-        for (int[] dir : shuffledDirections) {
+        for (int[] dir : DIRECTIONS) {
             int newX = x + dir[0] * 2;
             int newY = y + dir[1] * 2;
 
@@ -41,16 +46,5 @@ public class MazeGeneratorDFS implements Generator {
                 dfs(newX, newY);
             }
         }
-    }
-
-    private int[][] shuffleArray() {
-        int[][] shuffledArray = MazeGeneratorDFS.DIRECTIONS.clone();
-        for (int i = shuffledArray.length - 1; i > 0; i--) {
-            int index = random.nextInt(i + 1);
-            int[] temp = shuffledArray[index];
-            shuffledArray[index] = shuffledArray[i];
-            shuffledArray[i] = temp;
-        }
-        return shuffledArray;
     }
 }
