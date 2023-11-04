@@ -14,10 +14,10 @@ class MazeSolverDFSTest {
                 {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
         var maze = new Maze(2, 2, cells);
         var expectedPath =
-            new ArrayList<>(Arrays.asList(new Coordinate(1, 1), new Coordinate(0, 1), new Coordinate(0, 0)));
-        var solverBFS = new MazeSolverBFS();
+            new ArrayList<>(Arrays.asList(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(1, 1)));
+        var solverDFS = new MazeSolverDFS();
 
-        var path = solverBFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
+        var path = solverDFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
 
         Assertions.assertThat(path).isEqualTo(expectedPath);
     }
@@ -29,9 +29,9 @@ class MazeSolverDFSTest {
                 {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
         var maze = new Maze(2, 2, cells);
         var expectedPath = new ArrayList<>();
-        var solverBFS = new MazeSolverBFS();
+        var solverDFS = new MazeSolverDFS();
 
-        var path = solverBFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
+        var path = solverDFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
 
         Assertions.assertThat(path).isEqualTo(expectedPath);
     }
