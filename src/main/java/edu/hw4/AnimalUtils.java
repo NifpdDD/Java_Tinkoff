@@ -58,7 +58,7 @@ public class AnimalUtils {
 
     }
 
-    public static Optional<Animal> theHeighestAnimalUnderK(List<Animal> animals, int k) {
+    public static Optional<Animal> theWeighestAnimalUnderK(List<Animal> animals, int k) {
         if (k <= 0) {
             throw new IllegalArgumentException();
         }
@@ -69,12 +69,12 @@ public class AnimalUtils {
         return animals.stream().mapToInt(Animal::paws).sum();
     }
 
-    public static List<Animal> ofPawsIsNotEqualToAge(List<Animal> animals) {
+    public static List<Animal> animalsWithfPawsIsNotEqualToAge(List<Animal> animals) {
         return animals.stream().filter(animal -> animal.paws() != animal.age()).toList();
     }
 
     public static List<Animal> canBiteAndHeightUpper100(List<Animal> animals) {
-        var minHeight = 100;
+        final int minHeight = 100;
         return animals.stream().filter(animal -> animal.bites() && animal.height() > minHeight).toList();
     }
 
@@ -93,7 +93,7 @@ public class AnimalUtils {
         return animals.stream().allMatch(animal -> animal.type() == Animal.Type.DOG && animal.height() > k);
     }
 
-    public static Map<Animal.Type, Integer> totalWeightByType(List<Animal> animals, int k, int l) {
+    public static Map<Animal.Type, Integer> animalsWeightWhichAgeIsInKtoByType(List<Animal> animals, int k, int l) {
         if (k > l || k < 0) {
             throw new IllegalArgumentException();
         }
