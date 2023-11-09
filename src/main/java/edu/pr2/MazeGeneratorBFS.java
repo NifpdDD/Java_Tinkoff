@@ -2,6 +2,7 @@ package edu.pr2;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 public class MazeGeneratorBFS implements Generator {
@@ -53,7 +54,7 @@ public class MazeGeneratorBFS implements Generator {
         return new Maze(height, width, cells);
     }
 
-    private ArrayList<int[]> isHasUnvisitedNeighbor(int x, int y) {
+    private List<int[]> isHasUnvisitedNeighbor(int x, int y) {
         ArrayList<int[]> list = new ArrayList<>();
         for (int[] dir : MazeGeneratorBFS.DIRECTIONS) {
             int newX = x + dir[0] * 2;
