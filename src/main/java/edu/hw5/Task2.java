@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task2 {
+    @SuppressWarnings("MagicNumber")
     public List<LocalDate> getAll13Friday(int year) {
         if (year <= 0) {
             throw new IllegalArgumentException();
