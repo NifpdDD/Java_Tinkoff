@@ -9,7 +9,7 @@ public class Task7 {
     }
 
     public boolean isBeginAndEndWithTheSameChar(String str) {
-        var patten = Pattern.compile("^[01].*\1$");
+        var patten = Pattern.compile("^([01]).*\\1$");
         return patten.matcher(str).find();
     }
 
