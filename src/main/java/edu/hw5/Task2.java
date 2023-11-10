@@ -2,6 +2,7 @@ package edu.hw5;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class Task2 {
             var dates = getAll13Friday(date.getYear());
             LocalDate nextFriday = date;
             while (!dates.contains(date)) {
-                nextFriday = date.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
+                nextFriday = date.with(TemporalAdjusters.next(DayOfWeek.from(Month.APRIL)));
                 date = nextFriday;
             }
             return nextFriday;
@@ -39,4 +40,5 @@ public class Task2 {
             throw new IllegalArgumentException();
         }
     }
+
 }
