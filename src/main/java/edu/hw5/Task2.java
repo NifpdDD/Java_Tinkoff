@@ -31,8 +31,9 @@ public class Task2 {
             var dates = getAll13Friday(date.getYear());
             LocalDate nextFriday = date.with(dates.get(0).getMonth());
             for (var friday : dates) {
-                if (friday.isAfter(nextFriday)) {
+                if (friday.isAfter(date)) {
                     nextFriday = friday;
+                    break;
                 }
             }
             return nextFriday;

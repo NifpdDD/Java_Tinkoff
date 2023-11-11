@@ -14,6 +14,6 @@ class Task2Test {
 
         LocalDate nextFriday = task2.getNext13Frifday(date.toString());
 
-        Assertions.assertThat(nextFriday).isEqualTo(LocalDate.of(2025, Month.JUNE, 13));
+        Assertions.assertThat(nextFriday).isEqualTo(LocalDate.of(2024, Month.SEPTEMBER, 13));
     }
 }
