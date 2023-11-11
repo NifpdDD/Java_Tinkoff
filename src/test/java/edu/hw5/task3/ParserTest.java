@@ -52,7 +52,7 @@ class ParserTest {
     }
 
     @ParameterizedTest
-    @MethodSource("incorrrectDateFormats()")
+    @MethodSource("incorrrectDateFormats")
     void if_input_is_in_incorrect_format_should_return_local_date(String input, Optional<LocalDate> expected) {
         var parser = Parser.link(
             new CheckRussiaDateFormat(),
