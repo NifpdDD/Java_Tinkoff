@@ -2,20 +2,16 @@ package edu.hw5.task3;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.Optional;
+import org.apache.commons.validator.GenericValidator;
 
-public class CheckRussiaDateFormat extends Middleware {
+public class CheckRussiaDateFormat extends Parser {
     @Override
-    public Optional<LocalDate> parse(String time) {
-        DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("d/M/uu").toFormatter();
-        try {
-            return Optional.of(LocalDate.parse(time, formatter));
+    public Optional<LocalDate> parseCurrect(String date) {
+        DateTimeFormatter formatter2Y = DateTimeFormatter.ofPattern("d/M/[yyyy][yyy][yy][y]");
+        if (GenericValidator.isDate(date, "d/M/y", false)) {
+                return Optional.of(LocalDate.parse(date, formatter2Y));
         }
-        catch (Exception e) {
-            return Optional.empty();
-        }
-
+        return Optional.empty();
     }
-
 }

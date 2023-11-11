@@ -20,6 +20,7 @@ class Task1Test {
         Assertions.assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
     void if_notcorrrect_average_visit_duration_should_return_e() {
         var task1 = new Task1();
         List<String> times = List.of(
@@ -27,8 +28,8 @@ class Task1Test {
             "2022-04-01, 21:30 - 2022-04-02, 01:20"
         );
 
-        Assertions.assertThatThrownBy(()->task1.getAverageVisitDuration(times)).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> task1.getAverageVisitDuration(times))
+            .isInstanceOf(IllegalArgumentException.class);
     }
-
 
 }

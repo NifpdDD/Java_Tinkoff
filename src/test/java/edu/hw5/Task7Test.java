@@ -18,7 +18,7 @@ class Task7Test {
     @ParameterizedTest
     @CsvSource({"111", "001", "a10", "111111111111"})
     void if_is_legnth_more_than_3_and_3_pos_equals_0_should_return_false(String str) {
-        var task7 = new Task7();
+    var task7 = new Task7();
 
         boolean result = task7.isLegnthMoreThan3And3PosEquals0(str);
 

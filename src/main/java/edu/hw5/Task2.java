@@ -2,9 +2,7 @@ package edu.hw5;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +13,14 @@ public class Task2 {
             throw new IllegalArgumentException();
         }
         List<LocalDate> friday13List = new ArrayList<>();
-        for (int month = 1; month <= 12; month++) {
-            LocalDate date = LocalDate.of(year, month, 13);
-            if (date.getDayOfWeek() == DayOfWeek.FRIDAY) {
-                friday13List.add(date);
+        for (int currentYear = year; currentYear <= year + 1; currentYear++) {
+            for (int month = 1; month <= 12; month++) {
+                LocalDate date = LocalDate.of(currentYear, month, 13);
+                if (date.getDayOfWeek() == DayOfWeek.FRIDAY) {
+                    friday13List.add(date);
+                }
             }
         }
-
         return friday13List;
     }
 
@@ -30,10 +29,11 @@ public class Task2 {
         try {
             var date = LocalDate.parse(time, formatter);
             var dates = getAll13Friday(date.getYear());
-            LocalDate nextFriday = date;
-            while (!dates.contains(date)) {
-                nextFriday = date.with(TemporalAdjusters.next(DayOfWeek.from(Month.APRIL)));
-                date = nextFriday;
+            LocalDate nextFriday = date.with(dates.get(0).getMonth());
+            for (var friday : dates) {
+                if (friday.isAfter(nextFriday)) {
+                    nextFriday = friday;
+                }
             }
             return nextFriday;
         } catch (Exception e) {
