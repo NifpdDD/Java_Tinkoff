@@ -8,12 +8,12 @@ import lombok.Getter;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "LogAnalyzer", description = "Parse and analyze NGINX log files")
-public class ArgAnalyzer {
+public class InputAnalyzer {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssX");
     public static final String TIME = "T00:00:00Z";
 
-    private ArgAnalyzer() {
+    private InputAnalyzer() {
 
     }
 
@@ -53,7 +53,7 @@ public class ArgAnalyzer {
     }
 
     public static void parseArgs(String[] args) {
-        CommandLine commandLine = new CommandLine(new ArgAnalyzer());
+        CommandLine commandLine = new CommandLine(new InputAnalyzer());
         commandLine.parseArgs(args);
     }
 

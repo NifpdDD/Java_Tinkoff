@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import static edu.pr3.Patterns.PATTENRN_RESOURCES;
 
-public class AnalyseFile {
-    private AnalyseFile() {
+public class LogAnalyse {
+    private LogAnalyse() {
 
     }
 
@@ -18,8 +18,8 @@ public class AnalyseFile {
         while ((line = reader.readLine()) != null) {
             var log = LogParse.parse(line);
             if (log != null
-                && log.dateTimeLocal().toLocalDateTime().isAfter(ArgAnalyzer.getFromDateAsOffsetDateTime())
-                && log.dateTimeLocal().toLocalDateTime().isBefore(ArgAnalyzer.getToDateAsOffsetDateTime())) {
+                && log.dateTimeLocal().toLocalDateTime().isAfter(InputAnalyzer.getFromDateAsOffsetDateTime())
+                && log.dateTimeLocal().toLocalDateTime().isBefore(InputAnalyzer.getToDateAsOffsetDateTime())) {
                 Matcher matcher = PATTENRN_RESOURCES.matcher(log.request());
                 if (matcher.matches()) {
                     ResourcesStats.addResources(matcher.group(1));

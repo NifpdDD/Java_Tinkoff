@@ -12,7 +12,7 @@ import java.nio.file.PathMatcher;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.regex.Matcher;
-import static edu.pr3.AnalyseFile.analyseDoc;
+import static edu.pr3.LogAnalyse.analyseDoc;
 import static edu.pr3.Patterns.PATTERN_FILE_NAME;
 
 public class SimpleFileByPatternVisitor extends SimpleFileVisitor<Path> {

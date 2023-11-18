@@ -1,6 +1,6 @@
 package edu.pr3.stats;
 
-import edu.pr3.ArgAnalyzer;
+import edu.pr3.InputAnalyzer;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
@@ -22,8 +22,8 @@ public class GeneralStats implements Stats {
         for (int i = 1; i < k + 1 && i <= files.size(); i++) {
             stats.add(List.of("Файл " + i, files.get(i - 1)));
         }
-        stats.add(List.of("Начальная дата", ArgAnalyzer.getFromDate()));
-        stats.add(List.of("Конечная дата", ArgAnalyzer.getToDate()));
+        stats.add(List.of("Начальная дата", InputAnalyzer.getFromDate()));
+        stats.add(List.of("Конечная дата", InputAnalyzer.getToDate()));
         stats.add(List.of("Количество запросов ", String.valueOf(numberOfLogs)));
         stats.add(List.of("Средний размер ответа", sumOfResponseSize / numberOfLogs + "b"));
         return stats;

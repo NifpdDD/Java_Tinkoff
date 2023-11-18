@@ -11,11 +11,11 @@ public class Main {
 
     @SuppressWarnings("RegexpSinglelineJava")
     public static void main(String[] args) {
-        ArgAnalyzer.parseArgs(args);
-        String pathOrUrl = ArgAnalyzer.getLogPath();
+        InputAnalyzer.parseArgs(args);
+        String pathOrUrl = InputAnalyzer.getLogPath();
         try {
             LogReader.readPathOrUrl(pathOrUrl);
-            var report = Report.generateReport(ArgAnalyzer.getOutputFormat());
+            var report = Report.generateReport(InputAnalyzer.getOutputFormat());
             for (String line : report) {
                 System.out.println(line);
             }
