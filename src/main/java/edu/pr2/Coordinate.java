@@ -10,21 +10,20 @@ public record Coordinate(int row, int col) {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (!(obj instanceof Coordinate)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Coordinate other = (Coordinate) obj;
-        return Objects.equals(row, other.row) && Objects.equals(col, other.col);
+        Coordinate that = (Coordinate) o;
+        return row == that.row && col == that.col;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(row, col);
     }
-
 }
 
