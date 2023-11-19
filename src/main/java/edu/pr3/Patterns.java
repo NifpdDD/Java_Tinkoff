@@ -2,13 +2,18 @@ package edu.pr3;
 
 import java.util.regex.Pattern;
 
-public class Patterns {
-    private Patterns() {
+public enum Patterns {
+    FILE_NAME(".*(\\\\.*\\\\.*)"),
+    RESOURCES(".*(/.*)\\s.*"),
+    URL(".*/(.*)");
 
+    private final Pattern pattern;
+
+    Patterns(String regex) {
+        this.pattern = Pattern.compile(regex);
     }
 
-    public static final Pattern PATTERN_FILE_NAME = Pattern.compile(".*(\\\\.*\\\\.*)");
-    public static final Pattern PATTENRN_RESOURCES = Pattern.compile(".*(/.*)\\s.*");
-    public static final Pattern PATTERN_URL = Pattern.compile(".*/(.*)");
-
+    public Pattern getPattern() {
+        return pattern;
+    }
 }

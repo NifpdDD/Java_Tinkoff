@@ -1,5 +1,6 @@
 package edu.pr3.visitors;
 
+import edu.pr3.Patterns;
 import edu.pr3.stats.GeneralStats;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,6 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.regex.Matcher;
 import static edu.pr3.LogAnalyse.analyseDoc;
-import static edu.pr3.Patterns.PATTERN_FILE_NAME;
 
 public class SimpleFileByPatternVisitor extends SimpleFileVisitor<Path> {
     private final PathMatcher pathMatcher;
@@ -30,7 +30,7 @@ public class SimpleFileByPatternVisitor extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
         if (pathMatcher.matches(file)) {
-            Matcher matcher = PATTERN_FILE_NAME.matcher(file.toString());
+            Matcher matcher = Patterns.FILE_NAME.getPattern().matcher(file.toString());
             if (matcher.matches()) {
                 GeneralStats.addFile(matcher.group(1));
             }
