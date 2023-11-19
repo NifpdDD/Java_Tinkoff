@@ -11,8 +11,7 @@ public class AdocReport extends Report {
     @Override
     protected List<StringBuilder> getHeadLineAndName(Stats type) {
         var head = getHead(type);
-        var headLine = LINE;
-        return List.of(new StringBuilder(headLine), head, new StringBuilder(""));
+        return List.of(new StringBuilder(LINE), head, new StringBuilder());
     }
 
     @Override
