@@ -19,7 +19,7 @@ public class MarkDownReport extends Report {
     protected List<StringBuilder> getHeadLineAndName(Stats type) {
         var head = getHead(type);
         var headLine = new StringBuilder("|");
-        headLine.append("-|".repeat(type.getHeader().size()));
+        headLine.append("---|".repeat(type.getHeader().size()));
         return List.of(head, headLine);
     }
 

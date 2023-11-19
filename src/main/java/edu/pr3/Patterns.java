@@ -1,10 +1,11 @@
 package edu.pr3;
 
 import java.util.regex.Pattern;
+import lombok.Getter;
 
-public enum Patterns {
+@Getter public enum Patterns {
     FILE_NAME(".*(\\\\.*\\\\.*)"),
-    RESOURCES(".*(/.*)\\s.*"),
+    RESOURCES("(\\w+).*(/.*)\\s.*"),
     URL(".*/(.*)");
 
     private final Pattern pattern;
@@ -13,7 +14,4 @@ public enum Patterns {
         this.pattern = Pattern.compile(regex);
     }
 
-    public Pattern getPattern() {
-        return pattern;
-    }
 }

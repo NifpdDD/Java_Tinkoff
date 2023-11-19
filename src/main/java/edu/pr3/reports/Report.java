@@ -2,6 +2,8 @@ package edu.pr3.reports;
 
 import edu.pr3.stats.CodeAnsStats;
 import edu.pr3.stats.GeneralStats;
+import edu.pr3.stats.HttpMetodsStats;
+import edu.pr3.stats.RemoteAddresStats;
 import edu.pr3.stats.ResourcesStats;
 import edu.pr3.stats.Stats;
 import java.util.ArrayList;
@@ -13,13 +15,17 @@ public abstract class Report {
     public static List<String> generateReport(String format) {
         Report typeReport;
         typeReport = getTypeOfReport(format);
-        var summaryStats = List.of(new GeneralStats(), new ResourcesStats(), new CodeAnsStats());
+        var summaryStats = List.of(new GeneralStats(),
+            new ResourcesStats(),
+            new CodeAnsStats(),
+            new RemoteAddresStats(),
+            new HttpMetodsStats()
+        );
         List<String> report = new ArrayList<>();
         for (var stat : summaryStats) {
             report.add("## " + stat.getTitle());
             writeHeadLine(typeReport.getHeadLineAndName(stat), report);
             writeBody(typeReport.getBody(stat), report);
-            report.add("");
         }
         return report;
     }

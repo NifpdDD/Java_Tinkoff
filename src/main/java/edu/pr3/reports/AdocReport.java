@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdocReport extends Report {
+
+    public static final String LINE = "|===";
+
     @Override
     protected List<StringBuilder> getHeadLineAndName(Stats type) {
         var head = getHead(type);
-        var headLine = new StringBuilder("|=");
-        headLine.append("=".repeat(type.getHeader().size()));
-        return List.of(headLine, head);
+        var headLine = LINE;
+        return List.of(new StringBuilder(headLine), head, new StringBuilder(""));
     }
 
     @Override
@@ -20,6 +22,7 @@ public class AdocReport extends Report {
             var body = Report.getBodyLine(statsRow);
             report.add(String.valueOf(body));
         }
+        report.addAll(List.of(LINE, ""));
         return report;
     }
 }
