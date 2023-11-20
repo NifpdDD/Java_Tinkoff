@@ -11,7 +11,7 @@ import java.util.List;
 class MarkTest {
 
     public static final String PATH = "src/test/resources/logs*";
-    List<String> expectedMarkDown = Arrays.asList(
+    List<String> expectedMarkDown = List.of(
         "## Общая информация",
       "|Метрика|Значение",
           "|---|---|",
