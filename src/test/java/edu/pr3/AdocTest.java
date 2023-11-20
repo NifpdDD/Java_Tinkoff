@@ -11,7 +11,7 @@ import java.util.List;
 public class AdocTest {
 
     public static final String PATH = "src/test/resources/logs*";
-    List<String> expectedAdoc = Arrays.asList(
+    List<String> expectedAdoc = List.of(
         "## Общая информация",
         "|===",
         "|Метрика|Значение",
