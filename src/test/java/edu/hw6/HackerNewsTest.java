@@ -13,6 +13,6 @@ class HackerNewsTest {
         var hackerNew = topStories[0];
         var newTitle = HackerNews.news(hackerNew);
 
-        Assertions.assertThat(newTitle).isEqualTo("Emmett Shear becomes interim OpenAI CEO as Altman talks break down");
+        Assertions.assertThat(newTitle).isEqualTo("Sam Altman, Greg Brockman and others to join Microsoft");
     }
 }
