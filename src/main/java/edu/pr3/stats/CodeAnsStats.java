@@ -12,7 +12,7 @@ public class CodeAnsStats implements Stats {
 
     private static final Map<Integer, Long> FFREQ_CODE_ANS = new HashMap<>();
 
-    public static void addResources(Integer code) {
+    public static void addCode(Integer code) {
         CodeAnsStats.FFREQ_CODE_ANS.put(code, CodeAnsStats.FFREQ_CODE_ANS.getOrDefault(code, 0L) + 1);
     }
 

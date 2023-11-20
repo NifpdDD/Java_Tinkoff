@@ -25,12 +25,12 @@ public class LogAnalyse {
                 if (matcher.matches()) {
                     HttpMetodsStats.addMethod(matcher.group(1));
                     ResourcesStats.addResources(matcher.group(2));
+                    RemoteAddresStats.addAdrress(log.remoteAddr());
+                    GeneralStats.setNumberOfLogs(GeneralStats.getNumberOfLogs() + 1);
+                    GeneralStats.setSumOfResponseSize(
+                        GeneralStats.getSumOfResponseSize() + log.bodyBytesSent());
+                    CodeAnsStats.addCode(log.status());
                 }
-                RemoteAddresStats.addAdrress(log.remoteAddr());
-                GeneralStats.setNumberOfLogs(GeneralStats.getNumberOfLogs() + 1);
-                GeneralStats.setSumOfResponseSize(
-                    GeneralStats.getSumOfResponseSize() + log.bodyBytesSent());
-                CodeAnsStats.addResources(log.status());
             }
         }
     }
