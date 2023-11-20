@@ -8,14 +8,14 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
-class MainTest {
+class MarkTest {
 
-    public static final String PATH = "src/main/resources/logs.txt";
+    public static final String PATH = "src/main/java/edu/pr3/log/logs*";
     List<String> expectedMarkDown = Arrays.asList(
         "## Общая информация",
       "|Метрика|Значение",
           "|---|---|",
-          "|Файл 1|\\resources\\logs.txt",
+          "|Файл 1|\\log\\logs.txt",
           "|Начальная дата|-",
           "|Конечная дата|-",
           "|Количество запросов |3",
