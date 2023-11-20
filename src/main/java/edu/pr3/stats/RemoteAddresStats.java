@@ -10,14 +10,17 @@ public class RemoteAddresStats implements Stats {
 
     public static final String TITLE = "Удаленные адреса";
     public static final List<String> HEADERS = List.of("Адрес", "Количество");
-    @Getter private static Map<String, Long> freqOfAddress = new HashMap<>();
+    @Getter private Map<String, Long> freqOfAddress = new HashMap<>();
 
-    public static void addAdrress(String resources) {
-        RemoteAddresStats.freqOfAddress.put(resources, RemoteAddresStats.freqOfAddress.getOrDefault(resources, 0L) + 1);
+    public RemoteAddresStats() {
+
+    }
+    public void addAddress(String address) {
+        freqOfAddress.put(address, freqOfAddress.getOrDefault(address, 0L) + 1L);
     }
 
     public List<List<String>> getStats(int k) {
-        return RemoteAddresStats.freqOfAddress.entrySet().stream()
+        return freqOfAddress.entrySet().stream()
             .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
             .limit(k)
             .map(entry -> Arrays.asList(entry.getKey(), entry.getValue().toString()))

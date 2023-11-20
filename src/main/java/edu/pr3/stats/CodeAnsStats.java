@@ -10,14 +10,17 @@ public class CodeAnsStats implements Stats {
     public static final String TITLE = "Коды ответа";
     public static final List<String> HEADERS = List.of("Код", "Описание", "Количество");
 
-    private static final Map<Integer, Long> FFREQ_CODE_ANS = new HashMap<>();
+    private Map<Integer, Long> FFREQ_CODE_ANS = new HashMap<>();
 
-    public static void addCode(Integer code) {
-        CodeAnsStats.FFREQ_CODE_ANS.put(code, CodeAnsStats.FFREQ_CODE_ANS.getOrDefault(code, 0L) + 1);
+    public CodeAnsStats() {
+    }
+
+    public void addCode(Integer code) {
+        FFREQ_CODE_ANS.put(code, FFREQ_CODE_ANS.getOrDefault(code, 0L) + 1);
     }
 
     public List<List<String>> getStats(int k) {
-        return CodeAnsStats.FFREQ_CODE_ANS.entrySet().stream()
+        return FFREQ_CODE_ANS.entrySet().stream()
             .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
             .limit(k)
             .map(entry -> Arrays.asList(

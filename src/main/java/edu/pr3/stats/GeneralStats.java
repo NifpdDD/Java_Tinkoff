@@ -9,12 +9,12 @@ public class GeneralStats implements Stats {
     public static final String TITLE = "Общая информация";
     public static final List<String> HEADERS = List.of("Метрика", "Значение");
 
-    @Getter private static List<String> files = new ArrayList<>();
-    @Getter private static long numberOfLogs = 0;
-    @Getter private static long sumOfResponseSize = 0;
+    @Getter private List<String> files = new ArrayList<>();
+    @Getter private long numberOfLogs =0;
+    @Getter private long sumOfResponseSize =0;
 
-    public static void addFile(String file) {
-        files.add(file);
+    public GeneralStats() {
+
     }
 
     public List<List<String>> getStats(int k) {
@@ -39,15 +39,11 @@ public class GeneralStats implements Stats {
         return TITLE;
     }
 
-    public static void setFiles(List<String> files) {
-        GeneralStats.files = files;
+    public void setNumberOfLogs(long numberOfLogs) {
+        this.numberOfLogs = numberOfLogs;
     }
 
-    public static void setNumberOfLogs(long numberOfLogs) {
-        GeneralStats.numberOfLogs = numberOfLogs;
-    }
-
-    public static void setSumOfResponseSize(long sumOfResponseSize) {
-        GeneralStats.sumOfResponseSize = sumOfResponseSize;
+    public void setSumOfResponseSize(long sumOfResponseSize) {
+        this.sumOfResponseSize = sumOfResponseSize;
     }
 }
