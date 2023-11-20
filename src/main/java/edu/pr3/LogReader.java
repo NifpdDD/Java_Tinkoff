@@ -22,6 +22,9 @@ public class LogReader {
 
     private static String getStartDir(String path) {
         int firstAsteriskIndex = path.indexOf("*");
+        if (firstAsteriskIndex == -1) {
+            return path;
+        }
         int lastSlashIndex = path.lastIndexOf("/", firstAsteriskIndex);
         return path.substring(0, lastSlashIndex);
     }

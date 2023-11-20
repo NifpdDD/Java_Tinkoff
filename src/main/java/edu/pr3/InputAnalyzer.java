@@ -57,4 +57,19 @@ public class InputAnalyzer {
         commandLine.parseArgs(args);
     }
 
+    public static void setLogPath(String logPath) {
+        InputAnalyzer.logPath = logPath;
+    }
+
+    public static void setFromDate(String fromDate) {
+        InputAnalyzer.fromDate = fromDate;
+    }
+
+    public static void setToDate(String toDate) {
+        InputAnalyzer.toDate = toDate;
+    }
+
+    public static void setOutputFormat(String outputFormat) {
+        InputAnalyzer.outputFormat = outputFormat;
+    }
 }

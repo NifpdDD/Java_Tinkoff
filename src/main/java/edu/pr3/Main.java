@@ -10,7 +10,7 @@ public class Main {
     }
 
     @SuppressWarnings("RegexpSinglelineJava")
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         InputAnalyzer.parseArgs(args);
         String pathOrUrl = InputAnalyzer.getLogPath();
         try {
@@ -19,8 +19,6 @@ public class Main {
             for (String line : report) {
                 System.out.println(line);
             }
-        } catch (URISyntaxException | IOException e) {
-            throw new RuntimeException(e);
         } catch (RuntimeException e) {
             throw new ArithmeticException("Error: Логи не найдены или какие-то файлы повреждены");
         }
