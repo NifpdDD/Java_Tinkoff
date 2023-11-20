@@ -58,10 +58,6 @@ InputAnalyzer {
         commandLine.parseArgs(args);
     }
 
-    public void setLogPath(String logPath) {
-        this.logPath = logPath;
-    }
-
     public static void setFromDate(String fromDate) {
         InputAnalyzer.fromDate = fromDate;
     }

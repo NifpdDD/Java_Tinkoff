@@ -7,20 +7,17 @@ import java.util.Map;
 import org.apache.commons.httpclient.HttpStatus;
 
 public class CodeAnsStats implements Stats {
-    public static final String TITLE = "Коды ответа";
-    public static final List<String> HEADERS = List.of("Код", "Описание", "Количество");
+    private static final String TITLE = "Коды ответа";
+    private static final List<String> HEADERS = List.of("Код", "Описание", "Количество");
 
-    private Map<Integer, Long> FFREQ_CODE_ANS = new HashMap<>();
-
-    public CodeAnsStats() {
-    }
+    private final Map<Integer, Long> freqCodeAns = new HashMap<>();
 
     public void addCode(Integer code) {
-        FFREQ_CODE_ANS.put(code, FFREQ_CODE_ANS.getOrDefault(code, 0L) + 1);
+        freqCodeAns.put(code, freqCodeAns.getOrDefault(code, 0L) + 1);
     }
 
     public List<List<String>> getStats(int k) {
-        return FFREQ_CODE_ANS.entrySet().stream()
+        return freqCodeAns.entrySet().stream()
             .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
             .limit(k)
             .map(entry -> Arrays.asList(

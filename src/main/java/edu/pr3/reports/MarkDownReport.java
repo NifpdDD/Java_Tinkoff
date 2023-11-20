@@ -1,6 +1,5 @@
 package edu.pr3.reports;
 
-import edu.pr3.stats.GeneralStats;
 import edu.pr3.stats.Stats;
 import java.util.ArrayList;
 import java.util.List;

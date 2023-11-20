@@ -6,14 +6,10 @@ import java.util.List;
 import java.util.Map;
 import lombok.Getter;
 
-public class ResourcesStats implements Stats {
-    public static final String TITLE = "Запрашиваемые ресурсы";
-    public static final List<String> HEADERS = List.of("Ресурс", "Количество");
-    @Getter private Map<String, Long> freqOfResources = new HashMap<>();
-
-    public ResourcesStats() {
-
-    }
+@Getter public class ResourcesStats implements Stats {
+    private static final String TITLE = "Запрашиваемые ресурсы";
+    private static final List<String> HEADERS = List.of("Ресурс", "Количество");
+    private final Map<String, Long> freqOfResources = new HashMap<>();
 
     public void addResource(String resource) {
         freqOfResources.put(resource, freqOfResources.getOrDefault(resource, 0L) + 1);

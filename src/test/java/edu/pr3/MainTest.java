@@ -54,8 +54,8 @@ class MainTest {
         InputAnalyzer.setToDate("-");
         InputAnalyzer.setFromDate("-");
 
-        PathReader.readPathOrUrl(PATH);
-        var report = Report.generateReport("markdown");
+        var info =PathReader.readPathOrUrl(PATH);
+        var report = Report.generateReport("markdown",info);
 
         Assertions.assertThat(report).isEqualTo(expectedMarkDown);
     }

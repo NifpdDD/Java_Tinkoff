@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 
-public class GeneralStats implements Stats {
-    public static final String TITLE = "Общая информация";
-    public static final List<String> HEADERS = List.of("Метрика", "Значение");
+@Getter public class GeneralStats implements Stats {
+    private static final String TITLE = "Общая информация";
+    private static final List<String> HEADERS = List.of("Метрика", "Значение");
 
-    @Getter private List<String> files = new ArrayList<>();
-    @Getter private long numberOfLogs =0;
-    @Getter private long sumOfResponseSize =0;
+    private final List<String> files = new ArrayList<>();
+    private long numberOfLogs = 0;
+    private long sumOfResponseSize = 0;
 
-    public GeneralStats() {
-
+    public void addFile(String file) {
+        files.add(file);
     }
 
     public List<List<String>> getStats(int k) {

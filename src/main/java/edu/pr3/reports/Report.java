@@ -1,10 +1,5 @@
 package edu.pr3.reports;
 
-import edu.pr3.stats.CodeAnsStats;
-import edu.pr3.stats.GeneralStats;
-import edu.pr3.stats.HttpMetodsStats;
-import edu.pr3.stats.RemoteAddresStats;
-import edu.pr3.stats.ResourcesStats;
 import edu.pr3.stats.Stats;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,15 +7,9 @@ import java.util.List;
 public abstract class Report {
     protected static final int MAX_NUMBER_OF_FILES_IN_TABLE = 10;
 
-    public static List<String> generateReport(String format) {
+    public static List<String> generateReport(String format, List<Stats> summaryStats) {
         Report typeReport;
         typeReport = getTypeOfReport(format);
-        var summaryStats = List.of(new GeneralStats(),
-            new ResourcesStats(),
-            new CodeAnsStats(),
-            new RemoteAddresStats(),
-            new HttpMetodsStats()
-        );
         List<String> report = new ArrayList<>();
         for (var stat : summaryStats) {
             report.add("## " + stat.getTitle());
