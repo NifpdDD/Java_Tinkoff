@@ -1,17 +1,19 @@
 package edu.pr3.stats;
 
+import lombok.Getter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.Getter;
 
-@Getter public class HttpMetodsStats implements Stats {
+public class HttpMetodsStats implements Stats {
 
-    private static final String TITLE = "HTTP-методы";
-    private static final List<String> HEADERS = List.of("Метод", "Количество");
-    private Map<String, Long> freqOfMethods = new HashMap<>();
+    public static final String TITLE = "HTTP-методы";
+    public static final List<String> HEADERS = List.of("Метод", "Количество");
+    @Getter private Map<String, Long> freqOfMethods = new HashMap<>();
 
+    public HttpMetodsStats() {
+    }
 
     public void addMethod(String resources) {
         freqOfMethods.put(resources, freqOfMethods.getOrDefault(resources, 0L) + 1);
