@@ -18,17 +18,17 @@ import static edu.hw6.task3.RegexContainsFilter.regexContains;
 class AbstractFilterTest {
     @Test
     void if_fail_is_exists_should_found(@TempDir Path tempDir) throws IOException {
-        var path = tempDir.resolve("pivo.png");
-        Files.createFile(path);
+        var path = ("src/main/resources");
         byte[] magicBytes = {(byte) 0x89, 'P', 'N', 'G'};
         final AbstractFilter regularFile = Files::isRegularFile;
         DirectoryStream.Filter<Path> filter = regularFile.and(readable())
-            .and(lagerThan(-1))
+            .and(lagerThan(0))
+            .and(magicNumber(magicBytes))
             .and(extensionMatches("png"))
             .and(regexContains("p.*"));
         List<String> list = new ArrayList<>();
 
-        try (var entries = Files.newDirectoryStream(tempDir, filter)) {
+        try (var entries = Files.newDirectoryStream(Path.of(path), filter)) {
             entries.forEach(entry -> list.add(entry.getFileName().toString()));
         }
 
