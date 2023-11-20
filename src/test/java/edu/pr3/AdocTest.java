@@ -10,13 +10,13 @@ import java.util.List;
 
 public class AdocTest {
 
-    public static final String PATH = "src/test/resources/logs*";
-    List<String> expectedAdoc = List.of(
+    public static final String PATH = "src/main/resources/logs.txt";
+    List<String> expectedAdoc = Arrays.asList(
         "## Общая информация",
         "|===",
         "|Метрика|Значение",
         "",
-        "|Файл 1|logs.txt",
+        "|Файл 1|\\resources\\logs.txt",
         "|Начальная дата|-",
         "|Конечная дата|-",
         "|Количество запросов |3",
@@ -63,9 +63,9 @@ public class AdocTest {
         InputAnalyzer.setOutputFormat("adoc");
         InputAnalyzer.setToDate("-");
         InputAnalyzer.setFromDate("-");
+        PathReader.readPathOrUrl(PATH);
 
-        var info =PathReader.readPathOrUrl(PATH);
-        var report = Report.generateReport("adoc",info);
+        var report = Report.generateReport("adoc");
 
         Assertions.assertThat(report).isEqualTo(expectedAdoc);
     }
