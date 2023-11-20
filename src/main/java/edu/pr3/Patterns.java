@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 import lombok.Getter;
 
 @Getter public enum Patterns {
-    FILE_NAME(".*(\\\\.*\\\\.*)"),
+    FILE_NAME(".*(/.*/.*)"),
     RESOURCES("(\\w+).*(/.*)\\s.*"),
     URL(".*/(.*)");
 

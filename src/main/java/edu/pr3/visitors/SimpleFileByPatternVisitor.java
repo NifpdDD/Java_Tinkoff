@@ -56,7 +56,6 @@ public class SimpleFileByPatternVisitor extends SimpleFileVisitor<Path> {
         if (pathMatcher.matches(file)) {
             Matcher matcher = Patterns.FILE_NAME.getPattern().matcher(file.toString());
             if (matcher.matches()) {
-
                 generalStats.addFile(matcher.group(1));
                 try (BufferedReader reader = Files.newBufferedReader(file, StandardCharsets.UTF_16LE)) {
                     analyseDoc(reader, resourcesStats, remoteAddresStats, httpMetodsStats, generalStats, codeAnsStats);
