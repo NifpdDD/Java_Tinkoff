@@ -1,20 +1,18 @@
 package edu.hw6;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
-import java.util.Arrays;
-import static org.junit.jupiter.api.Assertions.*;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class HackerNewsTest {
 
     @Test
-    void hackerNewsTopStories() throws IOException, InterruptedException {
-        HackerNews hackerNews = new HackerNews();
-        long[] topStories = hackerNews.hackerNewsTopStories();
-        System.out.println(Arrays.toString(topStories));
-        String newsTitle = hackerNews.news(112397812);
-        System.out.println(newsTitle);
+    void find_some_of_hacker_news_top_stories_title() throws IOException, InterruptedException {
+        long[] topStories = HackerNews.hackerNewsTopStories();
 
+        var hackerNew = topStories[0];
+        var newTitle = HackerNews.news(hackerNew);
+
+        Assertions.assertThat(newTitle).isEqualTo("Emmett Shear becomes interim OpenAI CEO as Altman talks break down");
     }
 }

@@ -1,24 +1,32 @@
 package edu.hw6;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 class FileClonerTest {
 
     @Test
-    void clone_file_without_index() {
-        FileCloner.cloneFile(Path.of("C:\\Users\\pdd\\IdeaProjects\\Java_course\\java-course-2023\\Java_Tinkoff\\src\\main\\resources\\biba.aboba"));
+    void clone_file_without_index(@TempDir Path tempDir) throws IOException {
+        var filePath = tempDir.resolve("biba.aboba");
+        Files.createFile(filePath);
 
-        Assertions.assertThat(Files.exists(Path.of("C:\\Users\\pdd\\IdeaProjects\\Java_course\\java-course-2023\\Java_Tinkoff\\src\\main\\resources\\biba — копия.aboba"))).isTrue();
+        FileCloner.cloneFile(filePath);
+
+        Assertions.assertThat(Files.exists(tempDir.resolve("biba — копия.aboba"))).isTrue();
     }
 
     @Test
-    void clone_file_with_index() {
-        FileCloner.cloneFile(Path.of("src\\main\\resources\\biba.aboba"));
-        FileCloner.cloneFile(Path.of("src\\main\\resources\\biba.aboba"));
+    void clone_file_with_index(@TempDir Path tempDir) throws IOException {
+        var filePath = tempDir.resolve("biba.aboba");
+        Files.createFile(filePath);
 
-        Assertions.assertThat(Files.exists(Path.of("src\\main\\resources\\biba — копия (1).aboba"))).isTrue();
+        FileCloner.cloneFile(filePath);
+        FileCloner.cloneFile(filePath);
+
+        Assertions.assertThat(Files.exists(tempDir.resolve("biba — копия (1).aboba"))).isTrue();
     }
 }

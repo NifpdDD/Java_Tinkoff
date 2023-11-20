@@ -9,10 +9,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HackerNews {
+    private HackerNews() {
+
+    }
+
     private static final String TOP_STORIES_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
     private static final String ITEM_URL_TEMPLATE = "https://hacker-news.firebaseio.com/v0/item/%d.json";
 
-    public long[] hackerNewsTopStories() {
+    public static long[] hackerNewsTopStories() {
         var client = HttpClient.newHttpClient();
         var request = HttpRequest.newBuilder()
             .uri(URI.create(TOP_STORIES_URL))
@@ -28,7 +32,7 @@ public class HackerNews {
         }
     }
 
-    private long[] convertToLongArray(String[] ids) {
+    private static long[] convertToLongArray(String[] ids) {
         long[] result = new long[ids.length];
         for (int i = 0; i < ids.length; i++) {
             result[i] = Long.parseLong(ids[i].trim());
@@ -36,7 +40,7 @@ public class HackerNews {
         return result;
     }
 
-    public String news(long id) throws IOException, InterruptedException {
+    public static String news(long id) throws IOException, InterruptedException {
         String url = String.format(ITEM_URL_TEMPLATE, id);
         var client = HttpClient.newHttpClient();
         var request = HttpRequest.newBuilder()
@@ -47,7 +51,7 @@ public class HackerNews {
         return extractNewsTitle(body);
     }
 
-    private String extractNewsTitle(String json) {
+    private static String extractNewsTitle(String json) {
         Pattern pattern = Pattern.compile("\"title\":\"([^\"]+)\"");
         Matcher matcher = pattern.matcher(json);
         if (matcher.find()) {
