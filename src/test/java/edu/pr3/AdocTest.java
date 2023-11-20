@@ -10,13 +10,13 @@ import java.util.List;
 
 public class AdocTest {
 
-    public static final String PATH = "src/main/java/edu/pr3/log/logs*";
+    public static final String PATH = "src/test/resources/logs*";
     List<String> expectedAdoc = Arrays.asList(
         "## Общая информация",
         "|===",
         "|Метрика|Значение",
         "",
-        "|Файл 1|\\log\\logs.txt",
+        "|Файл 1|\\resources\\logs.txt",
         "|Начальная дата|-",
         "|Конечная дата|-",
         "|Количество запросов |3",
