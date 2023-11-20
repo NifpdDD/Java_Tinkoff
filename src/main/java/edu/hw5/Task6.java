@@ -1,10 +1,15 @@
 package edu.hw5;
 
 import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
 
 public class Task6 {
     public boolean isSubstr(String str, String substr) {
-        var pattern = Pattern.compile(".*" + substr + ".*");
+        var pattern = getPattern(substr);
         return pattern.matcher(str).find();
+    }
+
+    @NotNull private static Pattern getPattern(String substr) {
+        return Pattern.compile(".*" + substr + ".*");
     }
 }

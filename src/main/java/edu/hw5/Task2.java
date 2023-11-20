@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task2 {
+
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     @SuppressWarnings("MagicNumber")
     public List<LocalDate> getAll13Friday(int year) {
         if (year <= 0) {
@@ -25,9 +28,8 @@ public class Task2 {
     }
 
     public LocalDate getNext13Frifday(String time) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
-            var date = LocalDate.parse(time, formatter);
+            var date = LocalDate.parse(time, FORMATTER);
             var dates = getAll13Friday(date.getYear());
             LocalDate nextFriday = date.with(dates.get(0).getMonth());
             for (var friday : dates) {
