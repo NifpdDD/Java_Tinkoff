@@ -14,7 +14,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.regex.Matcher;
-import static edu.pr3.LogAnalyse.analyseDoc;
+import static edu.pr3.DocAnalyser.analyseDoc;
 
 public class SimpleUrlVisitor {
     private SimpleUrlVisitor() {

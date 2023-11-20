@@ -19,7 +19,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 import java.util.regex.Matcher;
-import static edu.pr3.LogAnalyse.analyseDoc;
+import static edu.pr3.DocAnalyser.analyseDoc;
 
 public class SimpleFileByPatternVisitor extends SimpleFileVisitor<Path> {
     private final PathMatcher pathMatcher;
