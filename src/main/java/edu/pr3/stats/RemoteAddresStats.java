@@ -6,15 +6,12 @@ import java.util.List;
 import java.util.Map;
 import lombok.Getter;
 
-public class RemoteAddresStats implements Stats {
+@Getter public class RemoteAddresStats implements Stats {
 
-    public static final String TITLE = "Удаленные адреса";
-    public static final List<String> HEADERS = List.of("Адрес", "Количество");
-    @Getter private Map<String, Long> freqOfAddress = new HashMap<>();
+    private static final String TITLE = "Удаленные адреса";
+    private static final List<String> HEADERS = List.of("Адрес", "Количество");
+    private Map<String, Long> freqOfAddress = new HashMap<>();
 
-    public RemoteAddresStats() {
-
-    }
     public void addAddress(String address) {
         freqOfAddress.put(address, freqOfAddress.getOrDefault(address, 0L) + 1L);
     }
