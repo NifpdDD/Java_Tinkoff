@@ -1,7 +1,7 @@
 package edu.hw7.task1;
 
-import lombok.Getter;
 import java.util.concurrent.atomic.AtomicInteger;
+import lombok.Getter;
 
 public class MulrtiInc {
     @Getter private AtomicInteger value;

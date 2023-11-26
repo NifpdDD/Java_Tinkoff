@@ -17,6 +17,6 @@ public class MultiFactorial {
     }
 
     public Long countFactorial() {
-        return LongStream.range(0, value+1).parallel().reduce(1L, (a, b) -> a * b);
+        return LongStream.range(0, value + 1).parallel().reduce(1L, (a, b) -> a * b);
     }
 }

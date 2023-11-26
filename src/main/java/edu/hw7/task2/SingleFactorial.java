@@ -17,6 +17,6 @@ public class SingleFactorial {
     }
 
     public Long countFactorial() {
-        return LongStream.range(0, value+1).reduce(1L, (a, b) -> a * b);
+        return LongStream.range(0, value + 1).reduce(1L, (a, b) -> a * b);
     }
 }
