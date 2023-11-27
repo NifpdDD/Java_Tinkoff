@@ -3,20 +3,20 @@ package edu.hw7.task2;
 import java.util.stream.LongStream;
 
 public class MultiFactorial {
-    private Long value;
+    private int value;
 
-    public MultiFactorial(Long value) {
+    public MultiFactorial(int value) {
         checkValue(value);
         this.value = value;
     }
 
-    private static void checkValue(Long value) {
-        if (value <= 0) {
+    private static void checkValue(int value) {
+        if (value < 0) {
             throw new IllegalArgumentException("value must be positive");
         }
     }
 
     public Long countFactorial() {
-        return LongStream.range(0, value + 1).parallel().reduce(1L, (a, b) -> a * b);
+        return LongStream.range(1, value + 1).parallel().reduce(1L, (a, b) -> a * b);
     }
 }

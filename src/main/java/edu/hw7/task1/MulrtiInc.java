@@ -4,9 +4,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Getter;
 
 public class MulrtiInc {
-    @Getter private AtomicInteger value;
+    @Getter private AtomicInteger value = new AtomicInteger();
 
-   public void inc() {
-       value.incrementAndGet();
-   }
+    public void inc() {
+        value.incrementAndGet();
+    }
 }

@@ -1,53 +1,67 @@
 package edu.hw7.task4;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CountPI {
-    private int totalCount;
-    private int curcleCount;
     private final int iters;
 
     public CountPI(int iters) {
         this.iters = iters;
     }
 
+    @SuppressWarnings("MagicNumber")
     public double count() {
+        int circleCount = 0;
         for (int i = 0; i < iters; i++) {
             double x = Math.random();
             double y = Math.random();
             if (x * x + y * y < 1) {
-                curcleCount++;
+                circleCount++;
             }
-            totalCount++;
         }
-        return (double) (4 * curcleCount) / totalCount;
+        return 4 * ((double) circleCount / iters);
     }
 
-    public double countMultiThread(byte numberOfTread) throws InterruptedException {
-        int countInOneTread = iters / numberOfTread;
-        Thread[] threads = new Thread[numberOfTread];
-        for (int i = 0; i < numberOfTread; i++) {
-            threads[i] = new Thread(getRunnable(countInOneTread));
+    @SuppressWarnings("MagicNumber")
+    public double countMultiThread(byte numberOfThread) throws InterruptedException, ExecutionException {
+        int countInOneThread = iters / numberOfThread;
+        ExecutorService executor = Executors.newFixedThreadPool(numberOfThread);
+        Future<Integer>[] results = new Future[numberOfThread];
+
+        for (int i = 0; i < numberOfThread; i++) {
+            Callable<Integer> callable = getCallable(countInOneThread);
+            results[i] = executor.submit(callable);
         }
-        for (int i = 0; i < numberOfTread; i++) {
-            threads[i].start();
+
+        int circleCount = 0;
+        int totalCount = 0;
+        for (Future<Integer> result : results) {
+            circleCount += result.get();
+            totalCount += countInOneThread;
         }
-        for (int i = 0; i < numberOfTread; i++) {
-                threads[i].join();
-        }
-        return (double) (4 * curcleCount) / totalCount;
+
+        executor.shutdown();
+
+        return 4 * ((double) circleCount / totalCount);
     }
 
-    private Runnable getRunnable(int countInOneTread) {
+    private Callable<Integer> getCallable(int countInOneThread) {
         return () -> {
-            for (int j = 0; j < countInOneTread; j++) {
-                double x = ThreadLocalRandom.current().nextDouble(0, 1);
-                double y = ThreadLocalRandom.current().nextDouble(0, 1);
+            int circleCount = 0;
+            for (int j = 0; j < countInOneThread; j++) {
+                double x = ThreadLocalRandom.current().nextDouble(0.0, 1);
+                double y = ThreadLocalRandom.current().nextDouble(0.0, 1);
                 if (x * x + y * y < 1) {
-                    curcleCount++;
+                    circleCount++;
                 }
-                totalCount++;
             }
+            return circleCount;
         };
     }
+
 }

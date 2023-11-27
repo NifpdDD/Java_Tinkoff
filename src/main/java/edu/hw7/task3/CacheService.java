@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CacheService implements PersonDatabase {
-    private CacheService() {
-
-    }
 
     private Map<Integer, Person> ids = new HashMap<>();
     private Map<String, Person> names = new HashMap<>();

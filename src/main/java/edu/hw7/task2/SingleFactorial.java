@@ -11,12 +11,12 @@ public class SingleFactorial {
     }
 
     private static void checkValue(Long value) {
-        if (value <= 0) {
+        if (value < 0) {
             throw new IllegalArgumentException("value must be positive");
         }
     }
 
     public Long countFactorial() {
-        return LongStream.range(0, value + 1).reduce(1L, (a, b) -> a * b);
+        return LongStream.range(1, value + 1).reduce(1L, (a, b) -> a * b);
     }
 }

@@ -6,9 +6,6 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ReadWriteOptmCacheService implements PersonDatabase {
-    private ReadWriteOptmCacheService() {
-
-    }
 
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
     private Map<Integer, Person> ids = new HashMap<>();
