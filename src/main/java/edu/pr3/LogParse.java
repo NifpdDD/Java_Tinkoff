@@ -29,16 +29,8 @@ public class LogParse {
             long bodyBytesSent = Long.parseLong(matcher.group(6));
             String httpReferer = matcher.group(7);
             String httpUserAgent = matcher.group(8);
-            return new Log(
-                remoteAddr,
-                remoteUser,
-                timeLocal,
-                request,
-                status,
-                bodyBytesSent,
-                httpReferer,
-                httpUserAgent
-            );
+            return new Log.LogBuilder().remoteAddr(remoteAddr).remoteUser(remoteUser).dateTimeLocal(timeLocal)
+                .request(request).status(status).bodyBytesSent(bodyBytesSent).httpReferer(httpReferer).httpUserAgent(httpUserAgent).build();
         }
         return null;
     }

@@ -5,6 +5,7 @@ import edu.pr3.stats.GeneralStats;
 import edu.pr3.stats.HttpMetodsStats;
 import edu.pr3.stats.RemoteAddresStats;
 import edu.pr3.stats.ResourcesStats;
+import edu.pr3.stats.Stats;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -25,26 +26,39 @@ public class DocAnalyser {
         String line;
         while ((line = reader.readLine()) != null) {
             var log = LogParse.parse(line);
-            if (log != null
-                && log.dateTimeLocal().toLocalDateTime().isAfter(InputAnalyzer.getFromDateAsOffsetDateTime())
-                && log.dateTimeLocal().toLocalDateTime().isBefore(InputAnalyzer.getToDateAsOffsetDateTime())) {
-                Matcher matcher = Patterns.RESOURCES.getPattern().matcher(log.request());
-                if (matcher.matches()) {
-                    getLineStats(
-                        matcher,
-                        log,
-                        httpMetodsStats,
-                        resourcesStats,
-                        remoteAddresStats,
-                        codeAnsStats,
-                        generalStats
-                    );
-                }
+            var massStats = new Stats[]{resourcesStats, remoteAddresStats, httpMetodsStats, generalStats, codeAnsStats};
+            collectionOfStatistics(resourcesStats, remoteAddresStats, httpMetodsStats, generalStats, codeAnsStats, log);
+        }
+    }
+
+    private static void collectionOfStatistics(
+        ResourcesStats resourcesStats,
+        RemoteAddresStats remoteAddresStats,
+        HttpMetodsStats httpMetodsStats,
+        GeneralStats generalStats,
+        CodeAnsStats codeAnsStats,
+        Log log
+    ) {
+        if (log != null
+            && log.dateTimeLocal().toLocalDateTime().isAfter(InputAnalyzer.getFromDateAsOffsetDateTime())
+            && log.dateTimeLocal().toLocalDateTime().isBefore(InputAnalyzer.getToDateAsOffsetDateTime())) {
+            Matcher matcher = Patterns.RESOURCES.getPattern().matcher(log.request());
+            if (matcher.matches()) {
+                getLineStats(
+                    matcher,
+                    log,
+                    httpMetodsStats,
+                    resourcesStats,
+                    remoteAddresStats,
+                    codeAnsStats,
+                    generalStats
+                );
             }
         }
     }
 
-    private static void getLineStats(
+    private static void
+    getLineStats(
         Matcher matcher,
         Log log,
         HttpMetodsStats httpMetodsStats,
