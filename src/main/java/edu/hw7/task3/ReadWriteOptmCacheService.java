@@ -8,10 +8,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ReadWriteOptmCacheService implements PersonDatabase {
 
     private final ReadWriteLock lock = new ReentrantReadWriteLock();
-    private Map<Integer, Person> ids = new HashMap<>();
-    private Map<String, Person> names = new HashMap<>();
-    private Map<String, Person> addresses = new HashMap<>();
-    private Map<String, Person> phones = new HashMap<>();
+    private final Map<Integer, Person> ids = new HashMap<>();
+    private final Map<String, Person> names = new HashMap<>();
+    private final Map<String, Person> addresses = new HashMap<>();
+    private final Map<String, Person> phones = new HashMap<>();
 
     @Override
     public void add(Person person) {

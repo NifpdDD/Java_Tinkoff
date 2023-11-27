@@ -36,7 +36,6 @@ public class Main {
         LOGGER.info(TIME_NANOSECONDS, duration);
         var cacheOptmServiceByAddress = new ReadWriteOptmCacheService();
         start = System.nanoTime();
-        person = PERSON;
         cacheOptmServiceByAddress.add(person);
         for (int i = 0; i < NUMBER_OF_THREADS; i++) {
             new Thread(() -> {

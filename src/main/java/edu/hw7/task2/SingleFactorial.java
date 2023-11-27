@@ -3,7 +3,7 @@ package edu.hw7.task2;
 import java.util.stream.LongStream;
 
 public class SingleFactorial {
-    private Long value;
+    private final Long value;
 
     public SingleFactorial(Long value) {
         checkValue(value);

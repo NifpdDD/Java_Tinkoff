@@ -8,11 +8,12 @@ class HackerNewsTest {
 
     @Test
     void find_some_of_hacker_news_top_stories_title() throws IOException, InterruptedException {
-        long[] topStories = HackerNews.hackerNewsTopStories();
+        var client = new HackerNews();
+        long[] topStories = client.hackerNewsTopStories();
 
         var hackerNew = topStories[0];
-        var newTitle = HackerNews.news(hackerNew);
+        var newTitle = client.news(hackerNew);
 
-        Assertions.assertThat(newTitle).isEqualTo(HackerNews.news(hackerNew));
+        Assertions.assertThat(newTitle).isEqualTo(client.news(hackerNew));
     }
 }

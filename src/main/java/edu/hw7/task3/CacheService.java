@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class CacheService implements PersonDatabase {
 
-    private Map<Integer, Person> ids = new HashMap<>();
-    private Map<String, Person> names = new HashMap<>();
-    private Map<String, Person> addresses = new HashMap<>();
-    private Map<String, Person> phones = new HashMap<>();
+    private final Map<Integer, Person> ids = new HashMap<>();
+    private final Map<String, Person> names = new HashMap<>();
+    private final Map<String, Person> addresses = new HashMap<>();
+    private final Map<String, Person> phones = new HashMap<>();
 
     @Override
     public synchronized void add(Person person) {

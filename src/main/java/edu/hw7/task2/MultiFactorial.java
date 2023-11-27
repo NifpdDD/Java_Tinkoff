@@ -3,7 +3,7 @@ package edu.hw7.task2;
 import java.util.stream.LongStream;
 
 public class MultiFactorial {
-    private int value;
+    private final int value;
 
     public MultiFactorial(int value) {
         checkValue(value);

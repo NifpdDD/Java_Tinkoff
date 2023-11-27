@@ -1,10 +1,8 @@
 package edu.hw7.task4;
 
+import java.util.concurrent.ExecutionException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.concurrent.ExecutionException;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CountPITest {
 
@@ -16,7 +14,7 @@ class CountPITest {
 
         var result = count.count();
 
-        Assertions.assertThat(result-Math.PI).isLessThan(0.01);
+        Assertions.assertThat(result - Math.PI).isLessThan(0.01);
     }
 
     @Test
@@ -25,7 +23,6 @@ class CountPITest {
 
         var result = count.countMultiThread((byte) 4);
 
-
-        Assertions.assertThat(result-Math.PI).isLessThan(0.01);
+        Assertions.assertThat(result - Math.PI).isLessThan(0.01);
     }
 }

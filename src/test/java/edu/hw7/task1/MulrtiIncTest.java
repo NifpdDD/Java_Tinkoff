@@ -1,9 +1,8 @@
 package edu.hw7.task1;
 
+import java.util.concurrent.CountDownLatch;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicInteger;
 
 class MulrtiIncTest {
 
