@@ -1,11 +1,8 @@
 package edu.pr3;
 
 import edu.pr3.reports.Report;
-import edu.pr3.stats.Stats;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
     private Main() {
