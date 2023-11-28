@@ -33,6 +33,7 @@ public class SimpleFileByPatternVisitor extends SimpleFileVisitor<Path> {
         Files.walkFileTree(Path.of(dir), simpleFileByPatternVisitor);
         return simpleFileByPatternVisitor.statsManager.getAllStatstics();
     }
+
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
         if (pathMatcher.matches(file)) {
