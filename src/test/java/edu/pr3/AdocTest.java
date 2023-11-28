@@ -65,7 +65,7 @@ public class AdocTest {
         InputAnalyzer.setFromDate("-");
 
         var info =PathReader.readPathOrUrl(PATH);
-        var report = Report.generateReport("adoc",info.getAllStatstics());
+        var report = Report.generateReport("adoc",info);
 
         Assertions.assertThat(report).isEqualTo(expectedAdoc);
     }
