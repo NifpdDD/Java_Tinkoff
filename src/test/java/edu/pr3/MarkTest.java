@@ -54,7 +54,7 @@ class MarkTest {
         InputAnalyzer.setFromDate("-");
 
         var info = PathReader.readPathOrUrl(PATH);
-        var report = Report.generateReport("markdown", info);
+        var report = Report.generateReport("markdown", info.getAllStatstics());
 
         Assertions.assertThat(report).isEqualTo(expectedMarkDown);
     }
