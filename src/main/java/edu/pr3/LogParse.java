@@ -12,13 +12,14 @@ public class LogParse {
 
     public static final String LOG_PATTERN =
         "^(\\S+) - (\\S+) \\[([^]]+)] \"([^\"]+)\" (\\d+) (\\d+) \"([^\"]+)\" \"([^\"]+)\"$";
+    public static final Pattern COMPILE = Pattern.compile(LOG_PATTERN);
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
         DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
 
     @SuppressWarnings("MagicNumber")
     public static Log parse(String logLine) {
         Pattern pattern;
-        pattern = Pattern.compile(LOG_PATTERN);
+        pattern = COMPILE;
         Matcher matcher = pattern.matcher(logLine);
         if (matcher.matches()) {
             String remoteAddr = matcher.group(1);

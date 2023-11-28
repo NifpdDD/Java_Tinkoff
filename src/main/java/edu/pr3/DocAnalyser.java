@@ -1,11 +1,5 @@
 package edu.pr3;
 
-import edu.pr3.stats.CodeAnsStats;
-import edu.pr3.stats.GeneralStats;
-import edu.pr3.stats.HttpMetodsStats;
-import edu.pr3.stats.RemoteAddresStats;
-import edu.pr3.stats.ResourcesStats;
-import edu.pr3.stats.Stats;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.regex.Matcher;
@@ -17,26 +11,17 @@ public class DocAnalyser {
 
     public static void analyseDoc(
         BufferedReader reader,
-        ResourcesStats resourcesStats,
-        RemoteAddresStats remoteAddresStats,
-        HttpMetodsStats httpMetodsStats,
-        GeneralStats generalStats,
-        CodeAnsStats codeAnsStats
+        StatsCollector statsCollector
         ) throws IOException {
         String line;
         while ((line = reader.readLine()) != null) {
             var log = LogParse.parse(line);
-            var massStats = new Stats[]{resourcesStats, remoteAddresStats, httpMetodsStats, generalStats, codeAnsStats};
-            collectionOfStatistics(resourcesStats, remoteAddresStats, httpMetodsStats, generalStats, codeAnsStats, log);
+            collectionOfStatistics(statsCollector, log);
         }
     }
 
     private static void collectionOfStatistics(
-        ResourcesStats resourcesStats,
-        RemoteAddresStats remoteAddresStats,
-        HttpMetodsStats httpMetodsStats,
-        GeneralStats generalStats,
-        CodeAnsStats codeAnsStats,
+        StatsCollector statsCollector,
         Log log
     ) {
         if (log != null
@@ -47,11 +32,7 @@ public class DocAnalyser {
                 getLineStats(
                     matcher,
                     log,
-                    httpMetodsStats,
-                    resourcesStats,
-                    remoteAddresStats,
-                    codeAnsStats,
-                    generalStats
+                    statsCollector
                 );
             }
         }
@@ -61,18 +42,14 @@ public class DocAnalyser {
     getLineStats(
         Matcher matcher,
         Log log,
-        HttpMetodsStats httpMetodsStats,
-        ResourcesStats resourcesStats,
-        RemoteAddresStats remoteAddresStats,
-        CodeAnsStats codeAnsStats,
-        GeneralStats generalStats
+        StatsCollector statsCollector
     ) {
-        httpMetodsStats.addMethod(matcher.group(1));
-        resourcesStats.addResource(matcher.group(2));
-        remoteAddresStats.addAddress(log.remoteAddr());
-        generalStats.setNumberOfLogs(generalStats.getNumberOfLogs() + 1);
-        generalStats.setSumOfResponseSize(
-            generalStats.getSumOfResponseSize() + log.bodyBytesSent());
-        codeAnsStats.addCode(log.status());
+        statsCollector.getHttpMetodsStats().addMethod(matcher.group(1));
+        statsCollector.getResourcesStats().addResource(matcher.group(2));
+        statsCollector.getRemoteAddresStats().addAddress(log.remoteAddr());
+        statsCollector.getGeneralStats().setNumberOfLogs(statsCollector.getGeneralStats().getNumberOfLogs() + 1);
+        statsCollector.getGeneralStats().setSumOfResponseSize(
+            statsCollector.getGeneralStats().getSumOfResponseSize() + log.bodyBytesSent());
+        statsCollector.getCodeAnsStats().addCode(log.status());
     }
 }
