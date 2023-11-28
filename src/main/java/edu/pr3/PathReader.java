@@ -1,7 +1,9 @@
 package edu.pr3;
 
+import edu.pr3.stats.Stats;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 import static edu.pr3.visitors.SimpleFileByPatternVisitor.analyseFileFromDir;
 import static edu.pr3.visitors.SimpleUrlVisitor.analyseURL;
 
@@ -11,7 +13,7 @@ public class PathReader {
 
     }
 
-    static StatsCollector readPathOrUrl(String pathOrUrl) throws IOException, URISyntaxException {
+    static List<Stats> readPathOrUrl(String pathOrUrl) throws IOException, URISyntaxException {
         if (pathOrUrl.startsWith("http")) {
             return analyseURL(pathOrUrl);
         }

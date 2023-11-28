@@ -16,7 +16,7 @@ public class Main {
         String pathOrUrl = InputAnalyzer.getLogPath();
         try {
             var info = PathReader.readPathOrUrl(pathOrUrl);
-            var report = Report.generateReport(InputAnalyzer.getOutputFormat(), info.getAllStatstics());
+            var report = Report.generateReport(InputAnalyzer.getOutputFormat(), info);
             for (String line : report) {
                 System.out.println(line);
             }
