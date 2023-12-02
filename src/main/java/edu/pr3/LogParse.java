@@ -18,23 +18,21 @@ public class LogParse {
 
     @SuppressWarnings("MagicNumber")
     public static Log parse(String logLine) {
-        Pattern pattern;
-        pattern = COMPILE;
-        Matcher matcher = pattern.matcher(logLine);
-        if (matcher.matches()) {
-            String remoteAddr = matcher.group(1);
-            String remoteUser = matcher.group(2);
-            var timeLocal = getOffsetDateTime(matcher.group(3));
-            String request = matcher.group(4);
-            int status = Integer.parseInt(matcher.group(5));
-            long bodyBytesSent = Long.parseLong(matcher.group(6));
-            String httpReferer = matcher.group(7);
-            String httpUserAgent = matcher.group(8);
-            return new Log.LogBuilder().remoteAddr(remoteAddr).remoteUser(remoteUser).dateTimeLocal(timeLocal)
-                .request(request).status(status).bodyBytesSent(bodyBytesSent).httpReferer(httpReferer)
-                .httpUserAgent(httpUserAgent).build();
+        Matcher matcher = COMPILE.matcher(logLine);
+        if (!matcher.matches()) {
+            return null;
         }
-        return null;
+        String remoteAddr = matcher.group(1);
+        String remoteUser = matcher.group(2);
+        var timeLocal = getOffsetDateTime(matcher.group(3));
+        String request = matcher.group(4);
+        int status = Integer.parseInt(matcher.group(5));
+        long bodyBytesSent = Long.parseLong(matcher.group(6));
+        String httpReferer = matcher.group(7);
+        String httpUserAgent = matcher.group(8);
+        return new Log.LogBuilder().remoteAddr(remoteAddr).remoteUser(remoteUser).dateTimeLocal(timeLocal)
+            .request(request).status(status).bodyBytesSent(bodyBytesSent).httpReferer(httpReferer)
+            .httpUserAgent(httpUserAgent).build();
     }
 
     private static OffsetDateTime getOffsetDateTime(String dateTime) {

@@ -11,12 +11,12 @@ public class Main {
 
     @SuppressWarnings("RegexpSinglelineJava")
     public static void main(String[] args) throws IOException, URISyntaxException {
-        InputAnalyzer.parseArgs(args);
+        var inputAnalyzer = InputAnalyzer.parseArgs(args);
 
-        String pathOrUrl = InputAnalyzer.getLogPath();
+        String pathOrUrl = inputAnalyzer.getLogPath();
         try {
-            var info = PathReader.readPathOrUrl(pathOrUrl);
-            var report = Report.generateReport(InputAnalyzer.getOutputFormat(), info);
+            var info = PathReader.readPathOrUrl(pathOrUrl, inputAnalyzer);
+            var report = Report.generateReport(inputAnalyzer.getOutputFormat(), info);
             for (String line : report) {
                 System.out.println(line);
             }

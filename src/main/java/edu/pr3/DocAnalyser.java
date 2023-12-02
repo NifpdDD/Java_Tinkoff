@@ -10,12 +10,13 @@ public class DocAnalyser {
 
     public static void analyseDoc(
         BufferedReader reader,
-        StatsManager statsManager
+        StatsManager statsManager,
+        InputAnalyzer inputAnalyzer
     ) throws IOException {
         String line;
         while ((line = reader.readLine()) != null) {
             var log = LogParse.parse(line);
-            statsManager.collectionOfStatistics(log);
+            statsManager.collectionOfStatistics(log, inputAnalyzer);
         }
     }
 }

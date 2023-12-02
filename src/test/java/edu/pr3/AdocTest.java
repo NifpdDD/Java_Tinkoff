@@ -3,9 +3,9 @@ package edu.pr3;
 import edu.pr3.reports.Report;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Arrays;
 import java.util.List;
 
 public class AdocTest {
@@ -57,15 +57,17 @@ public class AdocTest {
         "|===",
         ""
     );
+
     @Test
     void if_valid_log_and_adoc_file_should_generate_adoc_report_()
         throws IOException, URISyntaxException {
-        InputAnalyzer.setOutputFormat("adoc");
-        InputAnalyzer.setToDate("-");
-        InputAnalyzer.setFromDate("-");
+        var inputAnalyzer = new InputAnalyzer();
+        inputAnalyzer.setOutputFormat("adoc");
+        inputAnalyzer.setToDate("-");
+        inputAnalyzer.setFromDate("-");
 
-        var info =PathReader.readPathOrUrl(PATH);
-        var report = Report.generateReport("adoc",info);
+        var info = PathReader.readPathOrUrl(PATH, inputAnalyzer);
+        var report = Report.generateReport("adoc", info);
 
         Assertions.assertThat(report).isEqualTo(expectedAdoc);
     }

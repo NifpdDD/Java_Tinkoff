@@ -8,8 +8,7 @@ public abstract class Report {
     protected static final int MAX_NUMBER_OF_FILES_IN_TABLE = 10;
 
     public static List<String> generateReport(String format, List<Stats> summaryStats) {
-        Report typeReport;
-        typeReport = getTypeOfReport(format);
+        Report typeReport = getTypeOfReport(format);
         List<String> report = new ArrayList<>();
         for (var stat : summaryStats) {
             report.add("## " + stat.getTitle());

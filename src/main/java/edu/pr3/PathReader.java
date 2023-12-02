@@ -13,12 +13,13 @@ public class PathReader {
 
     }
 
-    static List<Stats> readPathOrUrl(String pathOrUrl) throws IOException, URISyntaxException {
+    static List<Stats> readPathOrUrl(String pathOrUrl, InputAnalyzer inputAnalyzer)
+        throws IOException, URISyntaxException {
         if (pathOrUrl.startsWith("http")) {
-            return analyseURL(pathOrUrl);
+            return analyseURL(pathOrUrl, inputAnalyzer);
         }
         var dir = getStartDir(pathOrUrl);
-        return analyseFileFromDir(dir, pathOrUrl);
+        return analyseFileFromDir(dir, pathOrUrl, inputAnalyzer);
     }
 
     private static String getStartDir(String path) {

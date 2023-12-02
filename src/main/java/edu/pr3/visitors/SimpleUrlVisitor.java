@@ -1,5 +1,6 @@
 package edu.pr3.visitors;
 
+import edu.pr3.InputAnalyzer;
 import edu.pr3.Patterns;
 import edu.pr3.StatsManager;
 import edu.pr3.stats.Stats;
@@ -17,16 +18,17 @@ public class SimpleUrlVisitor {
 
     }
 
-    public static List<Stats> analyseURL(String pathOrUrl) throws IOException, URISyntaxException {
+    public static List<Stats> analyseURL(String pathOrUrl, InputAnalyzer inputAnalyzer)
+        throws IOException, URISyntaxException {
         Matcher matcher;
-        StatsManager statsManager = new StatsManager();
+        StatsManager statsManager = new StatsManager(inputAnalyzer);
         matcher = Patterns.URL.getPattern().matcher(pathOrUrl);
         if (matcher.matches()) {
             statsManager.getGeneralStats().addFile(matcher.group(1));
             var uri = new URI(pathOrUrl);
             var url = uri.toURL();
             try (var reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
-                analyseDoc(reader, statsManager);
+                analyseDoc(reader, statsManager, inputAnalyzer);
             }
         }
         return statsManager.getAllStatstics();
