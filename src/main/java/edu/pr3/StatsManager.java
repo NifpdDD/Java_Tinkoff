@@ -12,18 +12,25 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Setter @Getter public class StatsManager {
-    private GeneralStats generalStats = new GeneralStats();
+    private GeneralStats generalStats;
     private CodeAnsStats codeAnsStats = new CodeAnsStats();
     private RemoteAddresStats remoteAddresStats = new RemoteAddresStats();
     private ResourcesStats resourcesStats = new ResourcesStats();
     private HttpMetodsStats httpMetodsStats = new HttpMetodsStats();
+    private InputAnalyzer inputAnalyzer;
+
+    public StatsManager(InputAnalyzer inputAnalyzer) {
+        this.inputAnalyzer = inputAnalyzer;
+        this.generalStats = new GeneralStats(inputAnalyzer);
+    }
 
     void collectionOfStatistics(
-        Log log
+        Log log,
+        InputAnalyzer inputAnalyzer
     ) {
         if (log != null
-            && log.dateTimeLocal().toLocalDateTime().isAfter(InputAnalyzer.getFromDateAsOffsetDateTime())
-            && log.dateTimeLocal().toLocalDateTime().isBefore(InputAnalyzer.getToDateAsOffsetDateTime())) {
+            && log.dateTimeLocal().toLocalDateTime().isAfter(inputAnalyzer.getFromDateAsOffsetDateTime())
+            && log.dateTimeLocal().toLocalDateTime().isBefore(inputAnalyzer.getToDateAsOffsetDateTime())) {
             Matcher matcher = Patterns.RESOURCES.getPattern().matcher(log.request());
             if (matcher.matches()) {
                 getHttpMetodsStats().addMethod(matcher.group(1));
@@ -37,7 +44,7 @@ import lombok.Setter;
         }
     }
 
-    public  List<Stats> getAllStatstics() {
+    public List<Stats> getAllStatstics() {
         return List.of(
             generalStats,
             resourcesStats,

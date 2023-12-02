@@ -50,10 +50,11 @@ class MarkTest {
     @Test
     void if_valid_log_and_markdown_file_should_generate_markdown_report_()
         throws IOException, URISyntaxException {
-        InputAnalyzer.setToDate("-");
-        InputAnalyzer.setFromDate("-");
+        var inputAnalyzer = new InputAnalyzer();
+        inputAnalyzer.setToDate("-");
+        inputAnalyzer.setFromDate("-");
 
-        var info = PathReader.readPathOrUrl(PATH);
+        var info = PathReader.readPathOrUrl(PATH, inputAnalyzer);
         var report = Report.generateReport("markdown", info);
 
         Assertions.assertThat(report).isEqualTo(expectedMarkDown);
