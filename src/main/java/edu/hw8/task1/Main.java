@@ -8,7 +8,7 @@ public class Main {
     private static final int MILLIS = 1000;
 
     public static void main(String[] args) throws InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(4);
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
 
         Server server = new Server();
         executorService.submit(server);

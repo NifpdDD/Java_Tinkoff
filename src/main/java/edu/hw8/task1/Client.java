@@ -4,12 +4,15 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Client extends Thread {
     private static final Logger LOGGER = LogManager.getLogger();
     private final String word;
+
+    @Getter private String answer;
 
     public Client(String word) {
         this.word = word;
@@ -27,7 +30,8 @@ public class Client extends Thread {
             buffer.clear();
             socketChannel.read(buffer);
             buffer.flip();
-            LOGGER.info(word + ":" + new String(buffer.array(), 0, buffer.limit()));
+
+            answer = word + ":" + new String(buffer.array(), 0, buffer.limit());
         } catch (IOException e) {
             LOGGER.error("IOException occurred", e);
         }

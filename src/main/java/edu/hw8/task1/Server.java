@@ -42,20 +42,12 @@ public class Server extends Thread {
 
                     while (iter.hasNext()) {
                         SelectionKey key = iter.next();
-
                         if (key.isAcceptable()) {
                             register(selector, serverSocket);
                         }
                         if (key.isReadable()) {
                             SocketChannel client = (SocketChannel) key.channel();
-                            executor.execute(() -> {
-                                try {
-                                    ByteBuffer buffer = ByteBuffer.allocate(CAPACITY);
-                                    answer(buffer, client);
-                                } catch (IOException e) {
-                                    throw new RuntimeException(e);
-                                }
-                            });
+                            getExecute(executor, client);
                         }
                         iter.remove();
                     }
@@ -64,6 +56,17 @@ public class Server extends Thread {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static void getExecute(ExecutorService executor, SocketChannel client) {
+        executor.execute(() -> {
+            try {
+                ByteBuffer buffer = ByteBuffer.allocate(CAPACITY);
+                answer(buffer, client);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 
     private static void register(Selector selector, ServerSocketChannel serverSocket) throws IOException {
