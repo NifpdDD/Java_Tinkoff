@@ -5,19 +5,18 @@ import org.junit.jupiter.api.Test;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import static org.junit.jupiter.api.Assertions.*;
+import static java.lang.Thread.sleep;
 
-class MainTest {
+class ServerTest {
     @Test
     public void should_return_correct_answer() throws InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(4);
         CountDownLatch latch = new CountDownLatch(3);
-
         Server server = new Server();
         executorService.submit(() -> {
             server.run();
-            latch.countDown();
         });
+        sleep(500);
         Client client1 = new Client("оскорбления");
         executorService.submit(() -> {
             client1.run();
@@ -36,10 +35,9 @@ class MainTest {
         executorService.shutdown();
         latch.await();
 
-        Assertions.assertThat(client3.getAnswer()).isEqualTo("интеллект:Чем ниже интеллект, тем громче оскорбления");
-        Assertions.assertThat(client2.getAnswer()).isEqualTo("личности:Не переходи на личности там, где их нет");
         Assertions.assertThat(client1.getAnswer()).isEqualTo("оскорбления:Если твои противники перешли на личные оскорбления, будь уверена — твоя победа не за горами");
-
+        Assertions.assertThat(client2.getAnswer()).isEqualTo("личности:Не переходи на личности там, где их нет");
+        Assertions.assertThat(client3.getAnswer()).isEqualTo("интеллект:Чем ниже интеллект, тем громче оскорбления");
     }
 
 }
