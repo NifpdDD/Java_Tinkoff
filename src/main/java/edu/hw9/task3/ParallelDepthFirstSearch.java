@@ -5,6 +5,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ParallelDepthFirstSearch {
+    private ParallelDepthFirstSearch() {
+
+    }
+
     private static final int NUM_THREADS = 4;
 
     public static void parallelDepthFirstSearch(Node root) {
