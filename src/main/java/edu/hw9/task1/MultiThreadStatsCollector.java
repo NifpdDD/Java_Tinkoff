@@ -2,13 +2,12 @@ package edu.hw9.task1;
 
 import java.util.Arrays;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import lombok.Getter;
 
-public class MultiThreadStatsCollector {
+public class MultiThreadStatsCollector implements AutoCloseable {
     @Getter private Queue<Stats> stats = new LinkedBlockingQueue<>();
     private final ExecutorService executorService;
 
@@ -25,6 +24,9 @@ public class MultiThreadStatsCollector {
             )));
     }
 
-
+    @Override
+    public void close() throws Exception {
+        executorService.shutdown();
+    }
 
 }
