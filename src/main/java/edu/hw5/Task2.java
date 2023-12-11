@@ -31,14 +31,10 @@ public class Task2 {
         try {
             var date = LocalDate.parse(time, FORMATTER);
             var dates = getAll13Friday(date.getYear());
-            LocalDate nextFriday = date.with(dates.get(0).getMonth());
-            for (var friday : dates) {
-                if (friday.isAfter(date)) {
-                    nextFriday = friday;
-                    break;
-                }
-            }
-            return nextFriday;
+            return dates.stream()
+                .filter(friday -> friday.isAfter(date))
+                .findFirst()
+                .orElse(date.with(dates.get(0).getMonth()));
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }
