@@ -9,7 +9,7 @@ import static java.lang.Thread.sleep;
 
 class MultiThreadStatsCollectorTest {
     @Test
-    void collectMultiThread() throws Exception {
+    void collect_multi_thread() throws Exception {
         var statsCollector = new MultiThreadStatsCollector(4);
         var countDownLatch = new CountDownLatch(3);
         var expected = new Stats("first", 6, OptionalDouble.of(2), OptionalDouble.of(3), OptionalDouble.of(1));
