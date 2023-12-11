@@ -29,9 +29,9 @@ class MultiThreadStatsCollectorTest {
             countDownLatch.countDown();
         }).start();
         countDownLatch.await();
-
-        Assertions.assertThat(statsCollector.getStats()).contains(expected, expected2, expected3);
         statsCollector.close();
+        Assertions.assertThat(statsCollector.getStats()).contains(expected, expected2, expected3);
+
     }
 
 }

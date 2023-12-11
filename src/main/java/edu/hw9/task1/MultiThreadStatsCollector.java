@@ -5,9 +5,11 @@ import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import lombok.Getter;
 
 public class MultiThreadStatsCollector implements AutoCloseable {
+    public static final int TIMEOUT = 5;
     @Getter private Queue<Stats> stats = new LinkedBlockingQueue<>();
     private final ExecutorService executorService;
 
@@ -27,6 +29,11 @@ public class MultiThreadStatsCollector implements AutoCloseable {
     @Override
     public void close() throws Exception {
         executorService.shutdown();
+        try {
+            executorService.awaitTermination(TIMEOUT, TimeUnit.MINUTES);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
