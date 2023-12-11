@@ -5,8 +5,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ImageUtils {
+    private final static Logger LOGGER = LogManager.getLogger();
+
     private ImageUtils() {
 
     }
@@ -28,7 +32,7 @@ public class ImageUtils {
 
         try {
             ImageIO.write(image, "png", new File(filename));
-            System.out.println("Изображение сохранено успешно.");
+            LOGGER.info("Saved image to " + filename);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
