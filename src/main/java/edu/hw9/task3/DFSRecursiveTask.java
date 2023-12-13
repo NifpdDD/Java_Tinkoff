@@ -15,16 +15,11 @@ class DFSRecursiveTask extends RecursiveTask<Void> {
         this.adjacencyList = adjacencyList;
     }
 
-    public boolean isVertexVisited(int vertex) {
-        return visited[vertex];
-    }
-
     @Override
     protected Void compute() {
         if (!visited[currentVertex]) {
             visited[currentVertex] = true;
         }
-
         List<DFSRecursiveTask> subtasks = new ArrayList<>();
 
         for (int neighbor : adjacencyList[currentVertex]) {
@@ -38,6 +33,6 @@ class DFSRecursiveTask extends RecursiveTask<Void> {
         for (DFSRecursiveTask subtask : subtasks) {
             subtask.join();
         }
-      return null;
+        return null;
     }
 }

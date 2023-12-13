@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 class DFSRecursiveTaskTest {
     @Test
-    public void testDepthFirstSearch() {
+    void test_dfs_multi_search() {
         Graph graph = new Graph(5);
 
         graph.addEdge(0, 1);

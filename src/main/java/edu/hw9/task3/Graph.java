@@ -6,8 +6,8 @@ import java.util.concurrent.ForkJoinPool;
 
 public class Graph {
     private int vertices;
-    private boolean visited[];
     private List<Integer>[] adjacencyList;
+    private boolean[] visited;
 
     public Graph(int vertices) {
         this.vertices = vertices;
@@ -16,11 +16,12 @@ public class Graph {
             adjacencyList[i] = new ArrayList<>();
         }
     }
-    public boolean areAllVerticeVisited()
-    {
-        for (var ver:visited){
-            if (!ver)
+
+    public boolean areAllVerticeVisited() {
+        for (var vertex : visited) {
+            if (!vertex) {
                 return false;
+            }
         }
         return true;
     }
@@ -31,8 +32,8 @@ public class Graph {
 
     public void depthFirstSearch(int startVertex) {
         ForkJoinPool forkJoinPool = new ForkJoinPool();
-
         try {
+            visited = new boolean[vertices];
             forkJoinPool.invoke(new DFSRecursiveTask(startVertex, visited, adjacencyList));
         } finally {
             forkJoinPool.shutdown();
