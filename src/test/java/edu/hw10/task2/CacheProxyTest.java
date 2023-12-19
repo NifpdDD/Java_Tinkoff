@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import static java.lang.Thread.sleep;
 
 class CacheProxyTest {
     @Test
@@ -33,21 +34,18 @@ class CacheProxyTest {
         FibCalculator fibCache = CacheProxy.create(fibCalc, FibCalculator.class, cache.toString());
         String expectedContent = "10:55";
         int threadCount = 5;
-        CountDownLatch latch = new CountDownLatch(threadCount);
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
 
         for (int i = 0; i < threadCount; i++) {
             executorService.execute(() -> {
                 try {
                     fibCache.fib(10);
-                    latch.countDown();
                 } catch (Exception e) {
                   throw new RuntimeException(e);
                 }
             });
         }
-        latch.await();
-
+        sleep(1000);
         Path filePath = cache.resolve("fib.txt");
         Assertions.assertThat(Files.exists(filePath)).isTrue();
         List<String> lines = Files.readAllLines(filePath);
