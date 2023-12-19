@@ -53,7 +53,7 @@ class CacheProxyTest {
         Path filePath = cache.resolve("fib.txt");
         Assertions.assertThat(Files.exists(filePath)).isTrue();
         List<String> lines = Files.readAllLines(filePath);
-        Assertions.assertThat(lines).containsExactly(expectedContent);
+        Assertions.assertThat(lines).containsExactly(expectedContent, expectedContent, expectedContent, expectedContent, expectedContent);
     }
 
 }
