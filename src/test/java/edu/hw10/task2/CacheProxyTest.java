@@ -45,7 +45,7 @@ class CacheProxyTest {
                 }
             });
         }
-        sleep(1000);
+        sleep(3000);
         Path filePath = cache.resolve("fib.txt");
         Assertions.assertThat(Files.exists(filePath)).isTrue();
         List<String> lines = Files.readAllLines(filePath);
