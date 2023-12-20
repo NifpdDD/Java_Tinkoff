@@ -48,8 +48,8 @@ class CacheProxyTest {
             });
         }
         latch.await();
-        executorService.shutdown();
         sleep(1000);
+        executorService.shutdown();
         Path filePath = cache.resolve("fib.txt");
         Assertions.assertThat(Files.exists(filePath)).isTrue();
         List<String> lines = Files.readAllLines(filePath);
