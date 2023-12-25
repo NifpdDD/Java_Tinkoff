@@ -7,14 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LogParse {
-    private LogParse() {
-    }
-
     public static final String LOG_PATTERN =
         "^(\\S+) - (\\S+) \\[([^]]+)] \"([^\"]+)\" (\\d+) (\\d+) \"([^\"]+)\" \"([^\"]+)\"$";
     public static final Pattern COMPILE = Pattern.compile(LOG_PATTERN);
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
         DateTimeFormatter.ofPattern("dd/MMM/yyyy:HH:mm:ss Z", Locale.ENGLISH);
+
+    private LogParse() {
+    }
 
     @SuppressWarnings("MagicNumber")
     public static Log parse(String logLine) {

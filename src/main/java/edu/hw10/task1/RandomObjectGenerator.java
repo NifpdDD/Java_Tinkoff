@@ -13,6 +13,13 @@ class RandomObjectGenerator {
 
     public static final Random RANDOM = new Random();
 
+    private static void checkCorrectMinAndMax(int minValue, int maxValue) {
+        if (minValue > maxValue || maxValue < 0 || minValue < 0) {
+            throw new IllegalArgumentException(
+                "Max value must be greater than or equal to Min value and both must be positive");
+        }
+    }
+
     public <T> T nextObject(Class<T> clazz) {
         try {
             if (clazz.isRecord()) {
@@ -77,13 +84,6 @@ class RandomObjectGenerator {
             args[i] = generatedValue;
         }
         return (T) constructor.newInstance(args);
-    }
-
-    private static void checkCorrectMinAndMax(int minValue, int maxValue) {
-        if (minValue > maxValue || maxValue < 0 || minValue < 0) {
-            throw new IllegalArgumentException(
-                "Max value must be greater than or equal to Min value and both must be positive");
-        }
     }
 
     boolean isNumeric(Class<?> type) {

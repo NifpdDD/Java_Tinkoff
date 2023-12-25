@@ -34,6 +34,13 @@ public class InputAnalyzer {
                         defaultValue = "markdown")
     private String outputFormat;
 
+    public static InputAnalyzer parseArgs(String[] args) {
+        var inputAnalyzer = new InputAnalyzer();
+        CommandLine commandLine = new CommandLine(inputAnalyzer);
+        commandLine.parse(args);
+        return inputAnalyzer;
+    }
+
     public void setOutputFormat(String format) {
         outputFormat = format;
     }
@@ -45,7 +52,6 @@ public class InputAnalyzer {
     public void setToDate(String s) {
         toDate = s;
     }
-
 
     public LocalDateTime getFromDateAsOffsetDateTime() {
         if (fromDate.equals("-")) {
@@ -59,12 +65,5 @@ public class InputAnalyzer {
             return LocalDateTime.MAX.atOffset(ZoneOffset.MAX).toLocalDateTime();
         }
         return OffsetDateTime.parse(toDate + TIME, DATE_TIME_FORMATTER).toLocalDateTime();
-    }
-
-    public static InputAnalyzer parseArgs(String[] args) {
-        var inputAnalyzer = new InputAnalyzer();
-        CommandLine commandLine = new CommandLine(inputAnalyzer);
-        commandLine.parse(args);
-        return inputAnalyzer;
     }
 }

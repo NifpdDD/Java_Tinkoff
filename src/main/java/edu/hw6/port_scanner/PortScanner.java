@@ -7,24 +7,15 @@ import java.util.List;
 import java.util.Map;
 
 public final class PortScanner {
-    private PortScanner() {
-    }
-
     private static final Map<Integer, String> PORTS = Map.of(
         135, "EPMAP",
         137, "Служба имен NetBIOS",
         143, "IMAP"
     );
-
     private static final int MIN_PORT = 0;
     private static final int MAX_PORT = 49151;
 
-    private enum Protocol {
-        TCP, UDP
-    }
-
-    private enum Status {
-        OPEN, CLOSED
+    private PortScanner() {
     }
 
     public static List<ScanResult> scanPorts() {
@@ -68,6 +59,14 @@ public final class PortScanner {
         if (!service.isEmpty() && status == Status.OPEN) {
             results.add(new ScanResult(protocol.toString(), port, service));
         }
+    }
+
+    private enum Protocol {
+        TCP, UDP
+    }
+
+    private enum Status {
+        OPEN, CLOSED
     }
 
     public record ScanResult(String protocol, int port, String service) {

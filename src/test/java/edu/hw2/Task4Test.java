@@ -11,6 +11,7 @@ class Task4Test {
 
         Assertions.assertThat(res.methodName()).isEqualTo("should_return_test_name");
     }
+
     @Test
     void should_return_class_name() {
         var res = CallingInfoClass.callingInfo();

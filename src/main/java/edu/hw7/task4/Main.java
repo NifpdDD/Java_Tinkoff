@@ -5,14 +5,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Main {
+    public static final int NANO = 1000000;
+    protected static final int[] ITERATIONS = new int[] {10_000_000, 100_000_000, 1_000_000_000};
+    protected static final byte[] THREAD_COUNTS = new byte[] {1, 2, 4, 6, 12};
+    private static final Logger LOGGER = LogManager.getLogger();
+
     private Main() {
 
     }
-
-    private static final Logger LOGGER = LogManager.getLogger();
-    protected static final int[] ITERATIONS = new int[] {10_000_000, 100_000_000, 1_000_000_000};
-    protected static final byte[] THREAD_COUNTS = new byte[] {1, 2, 4, 6, 12};
-    public static final int NANO = 1000000;
 
     public static void main(String[] args) {
 

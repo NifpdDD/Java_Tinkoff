@@ -8,10 +8,6 @@ public class Session {
     private final int maxAttempts;
     private int attempts;
 
-    public int getAttempts() {
-        return attempts;
-    }
-
     public Session(String answer, int maxAttempts) {
         checkWords(answer);
         if (maxAttempts <= 0) {
@@ -21,6 +17,40 @@ public class Session {
         this.userAnswer = "*".repeat(answer.length()).toCharArray();
         this.maxAttempts = maxAttempts;
         this.attempts = 0;
+    }
+
+    private static void checkWords(String word) {
+        checkWordEmptyOrWhitespace(word);
+        checkWordCorrectLength(word);
+        checkWordDigits(word);
+    }
+
+    private static void checkWordEmptyOrWhitespace(String word) {
+        if (word.trim().isEmpty()) {
+            throw new IllegalArgumentException(
+                "Word in dictionary cannot be empty or contain only whitespace:");
+        }
+    }
+
+    @SuppressWarnings("MagicNumber")
+    private static void checkWordCorrectLength(String word) {
+        if (word.length() < 3 || word.length() >= 50) {
+            throw new IllegalArgumentException(
+                "Word in dictionary length should be between 3 and 49 characters. Word \"" + word
+                    + "\" is not correct");
+        }
+    }
+
+    private static void checkWordDigits(String word) {
+        for (char c : word.toCharArray()) {
+            if (Character.isDigit(c)) {
+                throw new IllegalArgumentException("Word cannot contain digits: \"" + word + "\"");
+            }
+        }
+    }
+
+    public int getAttempts() {
+        return attempts;
     }
 
     @NotNull GuessResult guess(String guess) {
@@ -68,36 +98,6 @@ public class Session {
 
     private boolean isDefeat() {
         return attempts == maxAttempts - 1;
-    }
-
-    private static void checkWords(String word) {
-        checkWordEmptyOrWhitespace(word);
-        checkWordCorrectLength(word);
-        checkWordDigits(word);
-    }
-
-    private static void checkWordEmptyOrWhitespace(String word) {
-        if (word.trim().isEmpty()) {
-            throw new IllegalArgumentException(
-                "Word in dictionary cannot be empty or contain only whitespace:");
-        }
-    }
-
-    @SuppressWarnings("MagicNumber")
-    private static void checkWordCorrectLength(String word) {
-        if (word.length() < 3 || word.length() >= 50) {
-            throw new IllegalArgumentException(
-                "Word in dictionary length should be between 3 and 49 characters. Word \"" + word
-                    + "\" is not correct");
-        }
-    }
-
-    private static void checkWordDigits(String word) {
-        for (char c : word.toCharArray()) {
-            if (Character.isDigit(c)) {
-                throw new IllegalArgumentException("Word cannot contain digits: \"" + word + "\"");
-            }
-        }
     }
 
 }

@@ -4,6 +4,18 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class Task2 {
+    private static void checkStack(boolean stack) {
+        if (stack) {
+            throw new IllegalArgumentException("Invalid bracket sequence");
+        }
+    }
+
+    private static void checkChar(char bracket) {
+        if (bracket != '(' && bracket != ')') {
+            throw new IllegalArgumentException("Invalid symbol");
+        }
+    }
+
     public String[] groupBrackets(char[] str) {
         Stack<Character> stack = new Stack<>();
         ArrayList<String> arrayList = new ArrayList<>();
@@ -24,17 +36,5 @@ public class Task2 {
         }
         checkStack(!stack.empty());
         return arrayList.toArray(new String[0]);
-    }
-
-    private static void checkStack(boolean stack) {
-        if (stack) {
-            throw new IllegalArgumentException("Invalid bracket sequence");
-        }
-    }
-
-    private static void checkChar(char bracket) {
-        if (bracket != '(' && bracket != ')') {
-            throw new IllegalArgumentException("Invalid symbol");
-        }
     }
 }

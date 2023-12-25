@@ -10,7 +10,7 @@ import lombok.Getter;
 
     private static final String TITLE = "Удаленные адреса";
     private static final List<String> HEADERS = List.of("Адрес", "Количество");
-    private Map<String, Long> freqOfAddress = new HashMap<>();
+    private final Map<String, Long> freqOfAddress = new HashMap<>();
 
     public void addAddress(String address) {
         freqOfAddress.put(address, freqOfAddress.getOrDefault(address, 0L) + 1L);

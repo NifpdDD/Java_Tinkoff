@@ -6,13 +6,12 @@ import org.apache.logging.log4j.Logger;
 public class Main {
 
     public static final long ITERATIONS = 1000000L;
+    private static final Logger LOGGER = LogManager.getLogger();
+    private static final int THREAD_COUNT = 12;
 
     private Main() {
 
     }
-
-    private static final Logger LOGGER = LogManager.getLogger();
-    private static final int THREAD_COUNT = 12;
 
     public static void main(String[] args) {
         long iterations = ITERATIONS;

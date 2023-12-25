@@ -5,8 +5,9 @@ import edu.hw10.task1.Min;
 import org.jetbrains.annotations.NotNull;
 
 public class Person {
-    private int age;
-    private String name;
+    private final int age;
+    private final String name;
+
     public Person(
         @Min(5) @Max(90) int age,
         @NotNull String name

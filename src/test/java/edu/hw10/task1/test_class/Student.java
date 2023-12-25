@@ -6,8 +6,9 @@ public class Student extends Person {
     public Student(int age, String name) {
         super(age, name);
     }
+
     public static Student createStudent() {
-        int age = new Random().nextInt(0,90);
+        int age = new Random().nextInt(0, 90);
         return new Student(age, "John");
     }
 }

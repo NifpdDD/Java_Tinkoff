@@ -1,14 +1,14 @@
 package edu.hw6.task3;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import static edu.hw6.task3.ExtensionMatchesFilter.extensionMatches;
 import static edu.hw6.task3.IsReadableFitlter.readable;
 import static edu.hw6.task3.LagerThanFilter.lagerThan;

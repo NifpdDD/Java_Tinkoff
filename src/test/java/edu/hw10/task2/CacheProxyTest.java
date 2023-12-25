@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -27,6 +26,7 @@ class CacheProxyTest {
         List<String> lines = Files.readAllLines(resolve);
         Assertions.assertThat(lines).containsExactly(expectedContent);
     }
+
     @Test
     void should_invoke_method_concurrently(@TempDir Path tempDir) throws InterruptedException, IOException {
         var fibCalc = new FibCalculatorVersion1();
@@ -43,7 +43,7 @@ class CacheProxyTest {
                     fibCache.fib(10);
                     latch.countDown();
                 } catch (Exception e) {
-                  throw new RuntimeException(e);
+                    throw new RuntimeException(e);
                 }
             });
         }
