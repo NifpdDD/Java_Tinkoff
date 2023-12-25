@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class MazeGeneratorDFS implements Generator {
+    private static final List<int[]> DIRECTIONS = new ArrayList<>();
     private final int width;
     private final int height;
     private final Cell[][] cells;
-    private static final List<int[]> DIRECTIONS = new ArrayList<>();
 
     public MazeGeneratorDFS(Maze maze) {
         this.width = maze.width();

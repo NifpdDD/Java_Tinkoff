@@ -10,8 +10,7 @@ import lombok.Getter;
 
     private static final String TITLE = "HTTP-методы";
     private static final List<String> HEADERS = List.of("Метод", "Количество");
-    private Map<String, Long> freqOfMethods = new HashMap<>();
-
+    private final Map<String, Long> freqOfMethods = new HashMap<>();
 
     public void addMethod(String resources) {
         freqOfMethods.put(resources, freqOfMethods.getOrDefault(resources, 0L) + 1);

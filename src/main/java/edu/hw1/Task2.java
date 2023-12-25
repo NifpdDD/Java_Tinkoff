@@ -2,7 +2,6 @@ package edu.hw1;
 
 import java.util.Objects;
 
-
 public final class Task2 {
     private static final int SECONDS_IN_MUNUTE = 60;
 

@@ -9,9 +9,9 @@ import lombok.Getter;
     private static final String TITLE = "Общая информация";
     private static final List<String> HEADERS = List.of("Метрика", "Значение");
     private final List<String> files = new ArrayList<>();
+    private final InputAnalyzer inputAnalyzer;
     private long numberOfLogs = 0;
     private long sumOfResponseSize = 0;
-    private final InputAnalyzer inputAnalyzer;
 
     public GeneralStats(InputAnalyzer inputAnalyzer) {
         this.inputAnalyzer = inputAnalyzer;

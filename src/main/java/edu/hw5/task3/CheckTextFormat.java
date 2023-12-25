@@ -10,7 +10,7 @@ public class CheckTextFormat extends Parser {
             case "today" -> Optional.of(LocalDate.now());
             case "tomorrow" -> Optional.of(LocalDate.now().plusDays(1));
             case "yesterday" -> Optional.of(LocalDate.now().minusDays(1));
-            default ->  Optional.empty();
+            default -> Optional.empty();
         };
     }
 }

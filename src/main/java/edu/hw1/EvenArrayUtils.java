@@ -18,9 +18,6 @@ public final class EvenArrayUtils {
      * @throws NullPointerException if the input array is null
      */
 
-
-
-
     public static int[] filter(int[] numbers) {
         Objects.requireNonNull(numbers);
         LOGGER.trace("Filtering an array {}", numbers);

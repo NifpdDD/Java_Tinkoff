@@ -15,16 +15,16 @@ public class DickMap implements Map<String, String> {
     private final Path filePath;
     private final Map<String, String> diskMap = new HashMap<>();
 
-    private void createFileIfNotExists() throws IOException {
-        if (!Files.exists(filePath)) {
-            Files.createFile(filePath);
-        }
-    }
-
     public DickMap(String path) throws IOException {
         this.filePath = Path.of(path);
         createFileIfNotExists();
         loadFromDisk();
+    }
+
+    private void createFileIfNotExists() throws IOException {
+        if (!Files.exists(filePath)) {
+            Files.createFile(filePath);
+        }
     }
 
     private void loadFromDisk() throws IOException {

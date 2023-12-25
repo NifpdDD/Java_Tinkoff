@@ -13,14 +13,6 @@ public record Animal(
     int weight,
     boolean bites
 ) {
-    enum Type {
-        CAT, DOG, BIRD, FISH, SPIDER
-    }
-
-    enum Sex {
-        M, F
-    }
-
     public int paws() {
         return switch (type) {
             case CAT, DOG -> 4;
@@ -28,5 +20,13 @@ public record Animal(
             case FISH -> 0;
             case SPIDER -> 8;
         };
+    }
+
+    enum Type {
+        CAT, DOG, BIRD, FISH, SPIDER
+    }
+
+    enum Sex {
+        M, F
     }
 }

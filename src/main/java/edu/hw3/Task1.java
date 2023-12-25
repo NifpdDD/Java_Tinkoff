@@ -1,13 +1,6 @@
 package edu.hw3;
 
-
 public class Task1 {
-
-    public String atbashCipher(String text) {
-        StringBuilder result = new StringBuilder();
-        buildString(text, result);
-        return result.toString();
-    }
 
     private static void buildString(String text, StringBuilder result) {
         for (char c : text.toCharArray()) {
@@ -26,6 +19,12 @@ public class Task1 {
         } else {
             result.append((char) (219 - c));
         }
+    }
+
+    public String atbashCipher(String text) {
+        StringBuilder result = new StringBuilder();
+        buildString(text, result);
+        return result.toString();
     }
 
 }

@@ -10,14 +10,22 @@ import java.util.regex.Pattern;
 
 public class HackerNews {
 
+    private static final String TOP_STORIES_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
+    private static final String ITEM_URL_TEMPLATE = "https://hacker-news.firebaseio.com/v0/item/%d.json";
     private HttpClient client;
 
     HackerNews() {
 
     }
 
-    private static final String TOP_STORIES_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
-    private static final String ITEM_URL_TEMPLATE = "https://hacker-news.firebaseio.com/v0/item/%d.json";
+    private static String extractNewsTitle(String json) {
+        Pattern pattern = Pattern.compile("\"title\":\"([^\"]+)\"");
+        Matcher matcher = pattern.matcher(json);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return "";
+    }
 
     public long[] hackerNewsTopStories() {
         client = HttpClient.newHttpClient();
@@ -52,15 +60,6 @@ public class HackerNews {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         String body = response.body();
         return extractNewsTitle(body);
-    }
-
-    private static String extractNewsTitle(String json) {
-        Pattern pattern = Pattern.compile("\"title\":\"([^\"]+)\"");
-        Matcher matcher = pattern.matcher(json);
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-        return "";
     }
 }
 

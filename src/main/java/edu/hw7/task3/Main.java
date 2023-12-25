@@ -9,13 +9,11 @@ public class Main {
     public static final int INT = 100000;
     public static final Person PERSON = new Person(1, "Petr", "Perm", "25");
     public static final String TIME_NANOSECONDS = "Time: {} nanoseconds";
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private Main() {
 
     }
-
-    private static final Logger LOGGER = LogManager.getLogger();
-
 
     public static void main(String[] args) {
         var cacheService = new CacheService();
