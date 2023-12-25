@@ -1,10 +1,9 @@
 package edu.hw8.task2;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicLong;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class FixedThreadPoolTest {
     private static final long MOD = 1_000_000_007;
