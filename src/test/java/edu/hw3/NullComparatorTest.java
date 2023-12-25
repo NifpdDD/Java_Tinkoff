@@ -1,9 +1,8 @@
 package edu.hw3;
 
+import java.util.TreeMap;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import java.util.TreeMap;
-
 
 class NullComparatorTest {
 

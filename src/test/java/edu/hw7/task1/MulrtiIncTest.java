@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class MulrtiIncTest {
 
-    public static final int INT = 1_000_000 ;
+    public static final int INT = 1_000_000;
     public static byte THREAD_COUNT = 6;
 
     @Test

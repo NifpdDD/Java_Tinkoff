@@ -22,6 +22,20 @@ class ParserTest {
         };
     }
 
+    static Arguments[] incorrrectDateFormats() {
+        return new Arguments[] {
+            Arguments.of("pivo", Optional.empty()),
+            Arguments.of("2020112-2", Optional.empty()),
+            Arguments.of("1/3/1912312312376", Optional.empty()),
+            Arguments.of("1/123123123/20", Optional.empty()),
+            Arguments.of("tomorrrrrrrrrow", Optional.empty()),
+            Arguments.of("yestttttterday", Optional.empty()),
+            Arguments.of("today)))))))", Optional.empty()),
+            Arguments.of("1 day agoooo", Optional.empty()),
+            Arguments.of("35 dayssssss ago", Optional.empty()),
+        };
+    }
+
     @ParameterizedTest
     @MethodSource("corrrectDateFormats")
     void if_input_is_in_correct_format_should_return_local_date(String input, Optional<LocalDate> expected) {
@@ -35,20 +49,6 @@ class ParserTest {
         var result = parser.parse(input);
 
         Assertions.assertThat(result).isEqualTo(expected);
-    }
-
-    static Arguments[] incorrrectDateFormats() {
-        return new Arguments[] {
-            Arguments.of("pivo", Optional.empty()),
-            Arguments.of("2020112-2", Optional.empty()),
-            Arguments.of("1/3/1912312312376", Optional.empty()),
-            Arguments.of("1/123123123/20", Optional.empty()),
-            Arguments.of("tomorrrrrrrrrow", Optional.empty()),
-            Arguments.of("yestttttterday", Optional.empty()),
-            Arguments.of("today)))))))", Optional.empty()),
-            Arguments.of("1 day agoooo", Optional.empty()),
-            Arguments.of("35 dayssssss ago", Optional.empty()),
-        };
     }
 
     @ParameterizedTest

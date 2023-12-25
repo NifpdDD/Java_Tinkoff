@@ -5,26 +5,6 @@ import java.util.Comparator;
 import java.util.Objects;
 
 public class Contact {
-    public enum Sortby {
-        ASC, DESC
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof Contact other)) {
-            return false;
-        }
-        return Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName);
-    }
-
     private String firstName;
     private String lastName;
 
@@ -36,17 +16,6 @@ public class Contact {
         String[] nameParts = fullName.split(" ");
         this.firstName = nameParts[0];
         this.lastName = nameParts.length > 1 ? nameParts[1] : null;
-    }
-
-    public Contact[] parseContacts(String[] names, Sortby sortOrder) {
-        if (names == null || names.length == 0) {
-            return new Contact[0];
-        }
-        Comparator<Contact> comparator = getContactComparator(sortOrder);
-        Contact[] contacts = new Contact[names.length];
-        namesToContacts(names, contacts);
-        Arrays.sort(contacts, comparator);
-        return contacts;
     }
 
     private static void namesToContacts(String[] names, Contact[] contacts) {
@@ -68,5 +37,36 @@ public class Contact {
             }
             throw new IllegalArgumentException();
         };
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Contact other)) {
+            return false;
+        }
+        return Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName);
+    }
+
+    public Contact[] parseContacts(String[] names, Sortby sortOrder) {
+        if (names == null || names.length == 0) {
+            return new Contact[0];
+        }
+        Comparator<Contact> comparator = getContactComparator(sortOrder);
+        Contact[] contacts = new Contact[names.length];
+        namesToContacts(names, contacts);
+        Arrays.sort(contacts, comparator);
+        return contacts;
+    }
+
+    public enum Sortby {
+        ASC, DESC
     }
 }

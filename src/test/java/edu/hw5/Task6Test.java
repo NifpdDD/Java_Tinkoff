@@ -12,8 +12,9 @@ class Task6Test {
 
         var substr = "world";
 
-       Assertions.assertThat(task6.isSubstr(str, substr)).isTrue();
+        Assertions.assertThat(task6.isSubstr(str, substr)).isTrue();
     }
+
     @Test
     void if_isnot_substr_should_return_true() {
         var str = "Hello world11!";

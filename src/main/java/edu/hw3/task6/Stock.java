@@ -3,8 +3,8 @@ package edu.hw3.task6;
 import java.util.Objects;
 
 public class Stock {
-    private String name;
-    private int price;
+    private final String name;
+    private final int price;
 
     public Stock(String name, int price) {
         if (price < 0) {
@@ -23,10 +23,9 @@ public class Stock {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Stock)) {
+        if (!(obj instanceof Stock other)) {
             return false;
         }
-        Stock other = (Stock) obj;
         return Objects.equals(name, other.name) && Objects.equals(price, other.price);
     }
 

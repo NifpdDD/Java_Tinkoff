@@ -84,7 +84,7 @@ class Task8Test {
     }
 
     @ParameterizedTest
-@CsvSource({"111, false", "11, false"})
+    @CsvSource({"111, false", "11, false"})
     void if_is_number_is_equal_111_or_11_should_return_false(
         String str, boolean expected
     ) {

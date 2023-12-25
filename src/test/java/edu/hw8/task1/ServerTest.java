@@ -1,10 +1,10 @@
 package edu.hw8.task1;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 import static java.lang.Thread.sleep;
 
 class ServerTest {
@@ -35,7 +35,8 @@ class ServerTest {
         executorService.shutdown();
         latch.await();
 
-        Assertions.assertThat(client1.getAnswer()).isEqualTo("оскорбления:Если твои противники перешли на личные оскорбления, будь уверена — твоя победа не за горами");
+        Assertions.assertThat(client1.getAnswer()).isEqualTo(
+            "оскорбления:Если твои противники перешли на личные оскорбления, будь уверена — твоя победа не за горами");
         Assertions.assertThat(client2.getAnswer()).isEqualTo("личности:Не переходи на личности там, где их нет");
         Assertions.assertThat(client3.getAnswer()).isEqualTo("интеллект:Чем ниже интеллект, тем громче оскорбления");
     }

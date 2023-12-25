@@ -14,10 +14,9 @@ public record Coordinate(int row, int col) {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Coordinate)) {
+        if (!(obj instanceof Coordinate other)) {
             return false;
         }
-        Coordinate other = (Coordinate) obj;
         return Objects.equals(row, other.row) && Objects.equals(col, other.col);
     }
 

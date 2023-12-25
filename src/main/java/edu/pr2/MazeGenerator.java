@@ -9,6 +9,7 @@ public class MazeGenerator implements Generator {
     private final int width;
     private final int height;
     private final Cell[][] cells;
+    Random random = new Random();
 
     public MazeGenerator(Maze maze) {
         this.width = maze.width();
@@ -20,8 +21,6 @@ public class MazeGenerator implements Generator {
             }
         }
     }
-
-    Random random = new Random();
 
     @Override
     public Maze generate() {

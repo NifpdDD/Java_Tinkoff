@@ -6,12 +6,11 @@ import org.apache.logging.log4j.Logger;
 public class Main {
 
     public static final int VALUE_FACT = 25;
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private Main() {
 
     }
-
-    private static final Logger LOGGER = LogManager.getLogger();
 
     public static void main(String[] args) {
         int value = VALUE_FACT;

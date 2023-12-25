@@ -34,7 +34,7 @@ class Task4Test {
     void if_null_arrays_should_throw_illegal_argument_exception() {
         Task4 task4 = new Task4();
         int[] a = null;
-        int[] b = {1,2,3};
+        int[] b = {1, 2, 3};
         Assertions.assertThatThrownBy(() -> task4.isNestable(a, b)).isInstanceOf(IllegalArgumentException.class);
     }
 }

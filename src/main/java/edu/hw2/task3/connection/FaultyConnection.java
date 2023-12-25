@@ -17,7 +17,6 @@ public class FaultyConnection implements Connection {
         this.faultyChance = 1;
     }
 
-
     @Override
     public void execute(String command) {
         if (Math.random() < faultyChance) {
