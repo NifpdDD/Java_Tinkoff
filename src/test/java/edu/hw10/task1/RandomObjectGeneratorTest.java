@@ -16,6 +16,30 @@ class RandomObjectGeneratorTest {
         Assertions.assertThat(object.getName()).isNotEmpty();
     }
 
+    @Test
+    void testIsNumericWithNumericTypeShouldReturnTrue() {
+        RandomObjectGenerator generator = new RandomObjectGenerator();
+
+        assertTrue(generator.isNumeric(int.class));
+        assertTrue(generator.isNumeric(Integer.class));
+        assertTrue(generator.isNumeric(double.class));
+        assertTrue(generator.isNumeric(Double.class));
+        assertTrue(generator.isNumeric(float.class));
+        assertTrue(generator.isNumeric(Float.class));
+        assertTrue(generator.isNumeric(long.class));
+        assertTrue(generator.isNumeric(Long.class));
+    }
+
+    @Test
+    void testIsNumericWithNonNumericTypeShouldReturnFalse() {
+        RandomObjectGenerator generator = new RandomObjectGenerator();
+
+        assertFalse(generator.isNumeric(String.class));
+        assertFalse(generator.isNumeric(Object.class));
+        assertFalse(generator.isNumeric(Boolean.class));
+        assertFalse(generator.isNumeric(RandomObjectGenerator.class));
+    }
+
     @Test void create_object_with_factory_method() {
         RandomObjectGenerator generator = new RandomObjectGenerator();
         var object = generator.nextObject(Student.class, "createStudent");
@@ -28,6 +52,6 @@ class RandomObjectGeneratorTest {
         RandomObjectGenerator generator = new RandomObjectGenerator();
         var object = generator.nextObject(Dog.class);
 
-        Assertions.assertThat(object.age()).isBetween(5,20);
+        Assertions.assertThat(object.age()).isBetween(5, 20);
     }
 }

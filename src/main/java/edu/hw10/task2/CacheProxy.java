@@ -14,6 +14,7 @@ public class CacheProxy implements InvocationHandler {
     private final Object target;
     private final Map<Method, Map<Integer, Long>> cache;
     private final String cacheDirectory;
+    private final Map<Method, Cache> annotationCache = new ConcurrentHashMap<>();
 
     private CacheProxy(Object target, String cacheDirectory) {
         this.target = target;
@@ -31,22 +32,37 @@ public class CacheProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Cache cacheAnnotation = method.getAnnotation(Cache.class);
+        Cache cacheAnnotation = getCacheAnnotation(method);
         if (cacheAnnotation != null) {
             int arg = (int) args[0];
-            Map<Integer, Long> methodCache = cache.computeIfAbsent(method, k -> new ConcurrentHashMap<>());
-            if (methodCache.containsKey(arg)) {
-                return methodCache.get(arg);
+            Map<Integer, Long> methodCache = getMethodCache(method);
+            synchronized (methodCache) {
+                if (methodCache.containsKey(arg)) {
+                    return methodCache.get(arg);
+                }
+                long result = (long) method.invoke(target, args);
+                methodCache.put(arg, result);
+                if (cacheAnnotation.persist()) {
+                    persistToDisk(method, methodCache);
+                }
+                return result;
             }
-            long result = (long) method.invoke(target, args);
-            methodCache.put(arg, result);
-            if (cacheAnnotation.persist()) {
-                persistToDisk(method, methodCache);
-            }
-            return result;
         }
 
         return method.invoke(target, args);
+    }
+
+    private Cache getCacheAnnotation(Method method) {
+        return annotationCache.computeIfAbsent(method, m -> m.getAnnotation(Cache.class));
+    }
+
+    private Map<Integer, Long> getMethodCache(Method method) {
+        Map<Integer, Long> methodCache = cache.get(method);
+        if (methodCache == null) {
+            methodCache = new ConcurrentHashMap<>();
+            cache.put(method, methodCache);
+        }
+        return methodCache;
     }
 
     private void persistToDisk(Method method, Map<Integer, Long> methodCache) {
