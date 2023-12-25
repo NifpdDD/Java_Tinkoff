@@ -57,12 +57,7 @@ public class CacheProxy implements InvocationHandler {
     }
 
     private Map<Integer, Long> getMethodCache(Method method) {
-        Map<Integer, Long> methodCache = cache.get(method);
-        if (methodCache == null) {
-            methodCache = new ConcurrentHashMap<>();
-            cache.put(method, methodCache);
-        }
-        return methodCache;
+        return cache.computeIfAbsent(method, m -> new ConcurrentHashMap<>());
     }
 
     private void persistToDisk(Method method, Map<Integer, Long> methodCache) {
