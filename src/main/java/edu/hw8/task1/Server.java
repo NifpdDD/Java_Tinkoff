@@ -29,32 +29,47 @@ public class Server extends Thread {
     @Override
     public void run() {
         try {
-            var selector = Selector.open();
-            ServerSocketChannel serverSocket = ServerSocketChannel.open();
-            serverSocket.bind(new InetSocketAddress("localhost", PORT));
-            serverSocket.configureBlocking(false);
-            serverSocket.register(selector, SelectionKey.OP_ACCEPT);
-            try (ExecutorService executor = Executors.newFixedThreadPool(N_THREADS)) {
-                while (true) {
-                    selector.select();
-                    Set<SelectionKey> selectedKeys = selector.selectedKeys();
-                    Iterator<SelectionKey> iter = selectedKeys.iterator();
+            Selector selector = Selector.open();
+            ServerSocketChannel serverSocket = createAndConfigureServerSocket(selector);
+            ExecutorService executor = Executors.newFixedThreadPool(N_THREADS);
 
-                    while (iter.hasNext()) {
-                        SelectionKey key = iter.next();
-                        if (key.isAcceptable()) {
-                            register(selector, serverSocket);
-                        }
-                        if (key.isReadable()) {
-                            SocketChannel client = (SocketChannel) key.channel();
-                            getExecute(executor, client);
-                        }
-                        iter.remove();
-                    }
+            while (true) {
+                selector.select();
+
+                Set<SelectionKey> selectedKeys = selector.selectedKeys();
+                Iterator<SelectionKey> iter = selectedKeys.iterator();
+
+                while (iter.hasNext()) {
+                    SelectionKey key = iter.next();
+                    handleSelectionKey(selector, serverSocket, executor, key);
+                    iter.remove();
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private ServerSocketChannel createAndConfigureServerSocket(Selector selector) throws IOException {
+        try {
+            ServerSocketChannel serverSocket = ServerSocketChannel.open();
+            serverSocket.bind(new InetSocketAddress("localhost", PORT));
+            serverSocket.configureBlocking(false);
+            serverSocket.register(selector, SelectionKey.OP_ACCEPT);
+            return serverSocket;
+        } catch (IOException e) {
+          throw new RuntimeException(e);
+        }
+    }
+
+    private void handleSelectionKey(Selector selector, ServerSocketChannel serverSocket,
+        ExecutorService executor, SelectionKey key) throws IOException {
+        if (key.isAcceptable()) {
+            register(selector, serverSocket);
+        }
+        if (key.isReadable()) {
+            SocketChannel client = (SocketChannel) key.channel();
+            getExecute(executor, client);
         }
     }
 
