@@ -17,7 +17,7 @@ class RandomObjectGeneratorTest {
     }
 
     @Test
-    void testIsNumericWithNumericTypeShouldReturnTrue() {
+    void test_is_numeric_with_numeric_type_should_return_true() {
         RandomObjectGenerator generator = new RandomObjectGenerator();
 
         assertTrue(generator.isNumeric(int.class));
@@ -31,7 +31,7 @@ class RandomObjectGeneratorTest {
     }
 
     @Test
-    void testIsNumericWithNonNumericTypeShouldReturnFalse() {
+    void test_is_numeric_with_non_numeric_type_should_return_false() {
         RandomObjectGenerator generator = new RandomObjectGenerator();
 
         assertFalse(generator.isNumeric(String.class));
