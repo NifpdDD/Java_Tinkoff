@@ -5,7 +5,8 @@ import edu.hw10.task1.test_class.Person;
 import edu.hw10.task1.test_class.Student;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RandomObjectGeneratorTest {
     @Test void create_object_with_constructor() {
