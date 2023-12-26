@@ -23,7 +23,7 @@ class Task9Test {
     }
 
     @Test
-     void if_invalid_board_size_should_throw_exception() {
+    void if_invalid_board_size_should_throw_exception() {
         Task9 task9 = new Task9();
         int[][] invalidBoard = {
             {0, 0, 0, 0, 0, 0, 0, 0},
@@ -38,6 +38,7 @@ class Task9Test {
         Assertions.assertThatThrownBy(() -> task9.knightBoardCapture(invalidBoard))
             .isInstanceOf(IllegalArgumentException.class);
     }
+
     @Test
     void if_valid_board_has_incorrectPos_should_return_false() {
         Task9 task9 = new Task9();
@@ -69,12 +70,13 @@ class Task9Test {
         };
         Assertions.assertThat(task9.knightBoardCapture(validBoard)).isTrue();
     }
+
     @Test
     void if_empty_board_should_throw_illegal_argument_exception() {
         Task9 task9 = new Task9();
         int[][] invalidBoard = {};
         Assertions.assertThatThrownBy(() -> task9.knightBoardCapture(invalidBoard))
-            .isInstanceOf( IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -82,9 +84,8 @@ class Task9Test {
         Task9 task9 = new Task9();
         int[][] invalidBoard = null;
         Assertions.assertThatThrownBy(() -> task9.knightBoardCapture(invalidBoard))
-            .isInstanceOf( IllegalArgumentException.class);
+            .isInstanceOf(IllegalArgumentException.class);
     }
-
 
     @Test
     void if_invalid_value_should_throw_exception() {

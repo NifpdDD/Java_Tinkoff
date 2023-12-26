@@ -1,12 +1,11 @@
 package edu.pr3;
 
 import edu.pr3.reports.Report;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class AdocTest {
 

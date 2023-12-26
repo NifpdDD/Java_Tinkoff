@@ -45,27 +45,6 @@ class ContactTest {
         };
     }
 
-    @ParameterizedTest
-    @MethodSource("contactsDesc")
-    void if_correct_contacts_should_parse_desc(String[] contacts, Contact[] parseContacts) {
-        var c = new Contact();
-
-        var parse = c.parseContacts(contacts,DESC);
-
-        Assertions.assertThat(parse).isEqualTo(parseContacts);
-    }
-
-    @ParameterizedTest
-    @MethodSource("contactsAsc")
-    void if_correct_contacts_should_parse_asc(String[] contacts, Contact[] parseContacts) {
-        var c = new Contact();
-
-        var parse = c.parseContacts(contacts, ASC);
-
-        Assertions.assertThat(parse).isEqualTo(parseContacts);
-    }
-
-
     static Arguments[] error_contacts() {
         return new Arguments[] {
             Arguments.of(
@@ -80,6 +59,26 @@ class ContactTest {
             )
 
         };
+    }
+
+    @ParameterizedTest
+    @MethodSource("contactsDesc")
+    void if_correct_contacts_should_parse_desc(String[] contacts, Contact[] parseContacts) {
+        var c = new Contact();
+
+        var parse = c.parseContacts(contacts, DESC);
+
+        Assertions.assertThat(parse).isEqualTo(parseContacts);
+    }
+
+    @ParameterizedTest
+    @MethodSource("contactsAsc")
+    void if_correct_contacts_should_parse_asc(String[] contacts, Contact[] parseContacts) {
+        var c = new Contact();
+
+        var parse = c.parseContacts(contacts, ASC);
+
+        Assertions.assertThat(parse).isEqualTo(parseContacts);
     }
 
     @ParameterizedTest

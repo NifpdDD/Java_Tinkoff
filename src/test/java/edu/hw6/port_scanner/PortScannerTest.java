@@ -1,9 +1,6 @@
 package edu.hw6.port_scanner;
 
-import java.util.List;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import static edu.hw6.port_scanner.PortScanner.scanPorts;
 
 class PortScannerTest {
     @Test void check_port_scanner() {
