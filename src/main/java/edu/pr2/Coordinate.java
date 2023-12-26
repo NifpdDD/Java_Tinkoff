@@ -14,11 +14,10 @@ public record Coordinate(int row, int col) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Coordinate other)) {
             return false;
         }
-        Coordinate that = (Coordinate) o;
-        return row == that.row && col == that.col;
+        return Objects.equals(row, other.row) && Objects.equals(col, other.col);
     }
 
     @Override
