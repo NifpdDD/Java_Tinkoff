@@ -6,13 +6,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class MazeSolverBFS implements Solver {
+public class MazeSolverBFS extends Solver {
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
-        if (start.row() < 0 || start.col() > maze.height() - 1 || end.row() < 0
-            || start.col() > maze.width() - 1) {
-            throw new IllegalArgumentException();
-        }
+        checkCoord(maze, start);
+        checkCoord(maze, end);
         int width = maze.width();
         int height = maze.height();
         Cell[][] cells = maze.grid();

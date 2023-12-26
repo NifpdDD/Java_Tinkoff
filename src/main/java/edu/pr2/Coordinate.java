@@ -10,11 +10,11 @@ public record Coordinate(int row, int col) {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
+    public boolean equals(Object o) {
+        if (this == o) {
             return true;
         }
-        if (!(obj instanceof Coordinate other)) {
+        if (!(o instanceof Coordinate other)) {
             return false;
         }
         return Objects.equals(row, other.row) && Objects.equals(col, other.col);
@@ -24,6 +24,5 @@ public record Coordinate(int row, int col) {
     public int hashCode() {
         return Objects.hash(row, col);
     }
-
 }
 

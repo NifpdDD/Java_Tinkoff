@@ -1,12 +1,12 @@
 package edu.pr2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.Arrays;
+import static org.junit.jupiter.api.Assertions.*;
 
-class MazeSolverBFSTest {
-
+class MazeSolverDFSTest {
     @Test
     void if_path_exist_should_return_coord_path() {
         Cell[][] cells =
@@ -14,10 +14,10 @@ class MazeSolverBFSTest {
                 {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
         var maze = new Maze(2, 2, cells);
         var expectedPath =
-            new ArrayList<>(Arrays.asList(new Coordinate(1, 1), new Coordinate(0, 1), new Coordinate(0, 0)));
-        var solverBFS = new MazeSolverBFS();
+            new ArrayList<>(Arrays.asList(new Coordinate(0, 0), new Coordinate(0, 1), new Coordinate(1, 1)));
+        var solverDFS = new MazeSolverDFS();
 
-        var path = solverBFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
+        var path = solverDFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
 
         Assertions.assertThat(path).isEqualTo(expectedPath);
     }
@@ -29,10 +29,11 @@ class MazeSolverBFSTest {
                 {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
         var maze = new Maze(2, 2, cells);
         var expectedPath = new ArrayList<>();
-        var solverBFS = new MazeSolverBFS();
+        var solverDFS = new MazeSolverDFS();
 
-        var path = solverBFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
+        var path = solverDFS.solve(maze, new Coordinate(1, 1), new Coordinate(0, 0));
 
         Assertions.assertThat(path).isEqualTo(expectedPath);
     }
+
 }

@@ -25,12 +25,12 @@ class RendererTest {
             {{new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)},
                 {new Cell(Cell.Type.WALL), new Cell(Cell.Type.PASSAGE)}};
         var maze = new Maze(2, 2, cells);
-        var stringMazePath = new String[][] {{"█", "*",}, {"█", "*",}};
-        var r = new Renderer();
-        var s = new MazeSolverBFS();
+        var stringMazePath = new String[][]{{"█","*",},{"█","*",}};
+        var renderer = new Renderer();
+        var solverBFS = new MazeSolverBFS();
 
-        var path = s.solve(maze, new Coordinate(1, 1), new Coordinate(0, 1));
-        var prettyMazePath = r.render(maze, path);
+        var path = solverBFS.solve(maze,new Coordinate(1,1),new Coordinate(0,1));
+        var prettyMazePath =renderer.render(maze,path);
 
         Assertions.assertThat(prettyMazePath).isEqualTo(stringMazePath);
     }

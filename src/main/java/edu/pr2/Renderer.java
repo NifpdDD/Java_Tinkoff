@@ -29,7 +29,7 @@ public class Renderer {
                 if (maze.grid()[i][j].type() == Cell.Type.WALL) {
                     prettyMaze[i][j] = "█";
                 } else if (path.contains(new Coordinate(i, j))) {
-                    prettyMaze[i][j] = "*"; //
+                    prettyMaze[i][j] = "*";
                 } else {
                     prettyMaze[i][j] = " ";
                 }

@@ -9,6 +9,6 @@ class MazeTest {
         var h = -1;
         var w = -5;
 
-        Assertions.assertThatThrownBy(() -> new Maze(-1, 5, null)).isInstanceOf(IllegalArgumentException.class);
+        Assertions.assertThatThrownBy(() -> new Maze(h, w, null)).isInstanceOf(IllegalArgumentException.class);
     }
 }
